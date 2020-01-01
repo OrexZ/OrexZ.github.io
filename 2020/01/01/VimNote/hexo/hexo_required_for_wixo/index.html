@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>VimNote/linux-tools/cifs | OrexZ</title>
+  <title>搭建hexo并使用wixo主题 | OrexZ</title>
   <meta name="author" content="Rex">
   
   <meta name="description" content="embedded linux os article">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="VimNote/linux-tools/cifs"/>
+  <meta property="og:title" content="搭建hexo并使用wixo主题"/>
   <meta property="og:site_name" content="OrexZ"/>
 
   
@@ -58,7 +58,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
   <div class="container" id="container">
 	<div class="content">
 	  <div class="page-header">		
-  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">VimNote/linux-tools/cifs</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-12-13</span></h1>
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">搭建hexo并使用wixo主题</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2020-01-01</span></h1>
 </div>		
 
 <div class="row page">
@@ -71,35 +71,43 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	  
 
 	  <!-- content -->
-	  <h2 id="在linux操作系统上挂载windows操作系统"><a href="#在linux操作系统上挂载windows操作系统" class="headerlink" title="在linux操作系统上挂载windows操作系统"></a>在linux操作系统上挂载windows操作系统</h2><p>有一些工具可以很好的完成标题提到的内容，不过本文主要介绍’cifs’文件系统的挂载和使用</p>
-<p>使用手册可以在<a href="https://linux.die.net/man/8/mount.cifs" target="_blank" rel="noopener">这里</a>得到。</p>
-<h3 id="如何使用cifs文件系统挂载远程windows目录"><a href="#如何使用cifs文件系统挂载远程windows目录" class="headerlink" title="如何使用cifs文件系统挂载远程windows目录"></a>如何使用cifs文件系统挂载远程windows目录</h3><p>这很简单，不过需要你的linux先支持cifs文件系统才可以，所以需要安装如下工具，以ubuntu为例</p>
-<pre><code># 这和安装samba服务差不多
-apt search cifs-utils
-&gt;
-    cifs-utils/bionic 2:6.8-1 amd64
-    Common Internet File System utilities
-
-    samba/bionic-updates,bionic-security,now 2:4.7.6+dfsg~ubuntu-0ubuntu2.13 amd64 [installed]
-    SMB/CIFS file, print, and login server for Unix
-
-    smbclient/bionic-updates,bionic-security 2:4.7.6+dfsg~ubuntu-0ubuntu2.13 amd64
-    command-line SMB/CIFS clients for Unix
-
-sudo apt install cifs-utils
-
-# 确保windows侧正确的开启共享服务,cifs服务会默认的被开启
-
-# 挂载远程windows目录/sales到本地/mnt/cifs上，-o选项的内容可以查看前文提到的帮助手册
-# 这只是一个例子
-sudo mount -t cifs //192.168.101.100/sales /mnt/cifs -o username=shareuser,password=sharepassword,domain=nixcraft</code></pre><h3 id="如何使用密码文件避免每次输入？"><a href="#如何使用密码文件避免每次输入？" class="headerlink" title="如何使用密码文件避免每次输入？"></a>如何使用密码文件避免每次输入？</h3><pre><code># 密码文件就是$HOME/.win-file.cerd，名字任意，密码格式瑞安
-sudo mount -t cifs -o ro,credentials=$HOME/.win-file.cerd //cnshz-nv-fl01/FILE .win-file/
-
-# 密码文件格式
-username=hello
-password=world</code></pre><h3 id="如何开机自动挂载文件系统？"><a href="#如何开机自动挂载文件系统？" class="headerlink" title="如何开机自动挂载文件系统？"></a>如何开机自动挂载文件系统？</h3><p>这也很简单，这里提供一个例子</p>
-<pre><code># 在文件/etc/fstab中，添加一个挂载项，并使用指定的鉴权密码文件
-//cnshz-nv-fl01/FILE/balabala/share /home/jenkins/.win-file cifs auto,ro,credentials=/home/jenkins/.win-file.cred 0 0</code></pre>	  
+	  <h2 id="最简单最好用的Blog主题WIXO"><a href="#最简单最好用的Blog主题WIXO" class="headerlink" title="最简单最好用的Blog主题WIXO"></a>最简单最好用的Blog主题WIXO</h2><p>这里记录搭建hexo wixo主题的过程</p>
+<h3 id="首先安装hexo并初始化"><a href="#首先安装hexo并初始化" class="headerlink" title="首先安装hexo并初始化"></a>首先安装hexo并初始化</h3><p>安装hexo很容易，在<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">官网</a>可以很容易的找到答案</p>
+<p>当前版本</p>
+<pre><code>[rex@localhost hexo]$ hexo -V
+hexo-cli: 2.0.0
+os: Linux 3.10.0-957.el7.x86_64 linux x64
+node: 11.10.0
+v8: 7.0.276.38-node.17
+uv: 1.26.0
+zlib: 1.2.11
+brotli: 1.0.7
+ares: 1.15.0
+modules: 67
+nghttp2: 1.34.0
+napi: 4
+llhttp: 1.1.1
+http_parser: 2.8.0
+openssl: 1.1.1a
+cldr: 34.0
+icu: 63.1
+tz: 2018e
+unicode: 11.0</code></pre><p>初始化hexo项目步骤</p>
+<pre><code>hexo init blog
+cd blog
+npm install</code></pre><h3 id="下载wixo主题并使能"><a href="#下载wixo主题并使能" class="headerlink" title="下载wixo主题并使能"></a>下载wixo主题并使能</h3><p>使用git，clone主题仓库</p>
+<pre><code>git clone https://github.com/wzpan/hexo-theme-wixo.git themes/wixo</code></pre><p>安装依赖的库（对于本文所指当前版本来说）</p>
+<pre><code>npm install hexo-generator-search --save # required
+npm install hexo-tag-bootstrap --save # optional 当前版本使用0.2.0不行，需要使用0.0.8版本才会正常
+npm install hexo-deployer-git --save # for deploy.. required</code></pre><p>部署时候的例子，当然需要修改配置文件_config.yml</p>
+<pre><code>deploy:
+    type: git
+    repo: &lt;repository url&gt; # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
+    branch: [branch]
+    message: [message]</code></pre><p>最后，修改_config.yml,使能wixo主题</p>
+<h3 id="快速尝鲜"><a href="#快速尝鲜" class="headerlink" title="快速尝鲜"></a>快速尝鲜</h3><p>仅仅堆叠指令，common on</p>
+<pre><code>hexo clean
+hexo g &amp;&amp; hexo s</code></pre>	  
 
 	  <div>
   		<center>
@@ -112,78 +120,6 @@ password=world</code></pre><h3 id="如何开机自动挂载文件系统？"><a h
 	
 	
 		
-	
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
 			
 		
 	
@@ -193,138 +129,114 @@ password=world</code></pre><h3 id="如何开机自动挂载文件系统？"><a h
 		
 	
 		
-			
-			
-			
-		
-			
-		
 	
 		
-			
-		
 	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
 		
 	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
 		
 	
 		
-			
+	
+		
+	
 		
 	
 		
-			
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
 		
 	
 	
 	
-		<li class="prev"><a href="/2019/12/13/VimNote/linux-tools/apt-dpkg/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+		<li class="prev"><a href="/2020/01/01/VimNote/hexo_integrate/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next"><a href="/2019/12/13/VimNote/python/run-system-cmd/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>

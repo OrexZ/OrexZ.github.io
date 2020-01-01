@@ -23,6 +23,25 @@
     
     
     <entry>
+      <title>搭建hexo并使用wixo主题</title>
+      <link href="/2020/01/01/VimNote/hexo/hexo_required_for_wixo/"/>
+      <url>/2020/01/01/VimNote/hexo/hexo_required_for_wixo/</url>
+      
+        <content type="html"><![CDATA[<h2 id="最简单最好用的Blog主题WIXO"><a href="#最简单最好用的Blog主题WIXO" class="headerlink" title="最简单最好用的Blog主题WIXO"></a>最简单最好用的Blog主题WIXO</h2><p>这里记录搭建hexo wixo主题的过程</p><h3 id="首先安装hexo并初始化"><a href="#首先安装hexo并初始化" class="headerlink" title="首先安装hexo并初始化"></a>首先安装hexo并初始化</h3><p>安装hexo很容易，在<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">官网</a>可以很容易的找到答案</p><p>当前版本</p><pre><code>[rex@localhost hexo]$ hexo -Vhexo-cli: 2.0.0os: Linux 3.10.0-957.el7.x86_64 linux x64node: 11.10.0v8: 7.0.276.38-node.17uv: 1.26.0zlib: 1.2.11brotli: 1.0.7ares: 1.15.0modules: 67nghttp2: 1.34.0napi: 4llhttp: 1.1.1http_parser: 2.8.0openssl: 1.1.1acldr: 34.0icu: 63.1tz: 2018eunicode: 11.0</code></pre><p>初始化hexo项目步骤</p><pre><code>hexo init blogcd blognpm install</code></pre><h3 id="下载wixo主题并使能"><a href="#下载wixo主题并使能" class="headerlink" title="下载wixo主题并使能"></a>下载wixo主题并使能</h3><p>使用git，clone主题仓库</p><pre><code>git clone https://github.com/wzpan/hexo-theme-wixo.git themes/wixo</code></pre><p>安装依赖的库（对于本文所指当前版本来说）</p><pre><code>npm install hexo-generator-search --save # requirednpm install hexo-tag-bootstrap --save # optional 当前版本使用0.2.0不行，需要使用0.0.8版本才会正常npm install hexo-deployer-git --save # for deploy.. required</code></pre><p>部署时候的例子，当然需要修改配置文件_config.yml</p><pre><code>deploy:    type: git    repo: &lt;repository url&gt; # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io    branch: [branch]    message: [message]</code></pre><p>最后，修改_config.yml,使能wixo主题</p><h3 id="快速尝鲜"><a href="#快速尝鲜" class="headerlink" title="快速尝鲜"></a>快速尝鲜</h3><p>仅仅堆叠指令，common on</p><pre><code>hexo cleanhexo g &amp;&amp; hexo s</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> howto </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>文章样例模板</title>
       <link href="/2020/01/01/VimNote/demo/document_template/"/>
       <url>/2020/01/01/VimNote/demo/document_template/</url>
@@ -439,11 +458,11 @@
     
     
     <entry>
-      <title>VimNote/vim/vim-grep</title>
-      <link href="/2019/11/18/VimNote/vim/vim-grep/"/>
-      <url>/2019/11/18/VimNote/vim/vim-grep/</url>
+      <title>VimNote/vim/vim-built-in-tips</title>
+      <link href="/2019/11/18/VimNote/vim/vim-built-in-tips/"/>
+      <url>/2019/11/18/VimNote/vim/vim-built-in-tips/</url>
       
-        <content type="html"><![CDATA[<h2 id="vim内置搜索功能"><a href="#vim内置搜索功能" class="headerlink" title="vim内置搜索功能"></a>vim内置搜索功能</h2><p>很多插件都提供了这样的功能，不过我们看看vim内置的文件搜索功能：</p><p>帮助文档：</p><pre><code>:help vimgrep</code></pre><p>这里面有很多可以定制的内容，下面仅仅讲述使用grep后端完成搜索。</p><p>常用命令及适用场景：</p><blockquote><p>搜索本文件中的关键字</p></blockquote><pre><code>:vim[grep] /keyword/ % | copen</code></pre><blockquote><p>搜索当前文件所在目录的所有文件中的关键字</p></blockquote><pre><code>:cd %:h 或者已经使用了autochdir 选项:vim[grep] /keyword/ * | copen</code></pre><blockquote><p>递归地搜索指定目录下的所有文件</p></blockquote><pre><code>:vim[grep] /keyword/ ../** | copen:vim[grep] /keyword/ ../ | copen</code></pre><blockquote><p>搜索多个指定目录下的所有文件</p></blockquote><pre><code>:vim[grep] /keyword/ path_01/** | copen:vim[grep] /keyword/ ../path_02/** ../../path_03/* | copen</code></pre><p>不过这个搜索并不是异步的，所以你应该知道你要搜索的内容大致应该在那里。</p><p>使用<code>&lt;C-w&gt; o</code>可以关闭多有除了当前窗口外的其他窗口，自己琢磨吧。</p><p>重新映射一个上下窗口跳转的快捷键可能会很不错：</p><pre><code>nmap &lt;C-J&gt; &lt;C-W&gt;jnmap &lt;C-K&gt; &lt;C-W&gt;k</code></pre><h2 id="vim同时搜索多个关键字"><a href="#vim同时搜索多个关键字" class="headerlink" title="vim同时搜索多个关键字"></a>vim同时搜索多个关键字</h2><p>以‘或’的形式，同时搜索多个关键字：</p><pre><code>/\vword01|word02/word01\|word02</code></pre><p>以‘与’的形式，同时搜索多个关键字：(使用类似perl形式的正则表达式)</p><pre><code>/\vword01(some pattern)word02</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="VIM内置功能的使用技巧"><a href="#VIM内置功能的使用技巧" class="headerlink" title="VIM内置功能的使用技巧"></a>VIM内置功能的使用技巧</h1><p>很多开发者都狂热于VIM的可定制话，并迷失在VIM众多插件的海洋中，无法自拔。</p><p>其实VIM作为一个好用的文本编辑器，已经内置了很多好用的功能，一起看看吧。</p><p>使用内置技巧有一个好处，那就是你可以在不同的机器上有相同的动作，<br>别人看的眼花缭乱的时候，你可以牛逼轰轰的拂袖而去。</p><h2 id="如何手动reload你的文件到内存？"><a href="#如何手动reload你的文件到内存？" class="headerlink" title="如何手动reload你的文件到内存？"></a>如何手动reload你的文件到内存？</h2><p>有时候我们对一个文件可能有多个buffer与之对应，并且可能在不同的时候进行修改，<br>这很可能引起同步问题，那使用VIm的时候如何使用手动更新当前文件的内存映射呢？</p><pre><code>:e</code></pre><p>就这么简单的一句话。</p><p>如果你不想要存储你当时的所有修改，请使用下面的指令将文件的内存映射恢复到原来(或者其他地方已经修改后的版本)</p><pre><code>:e!</code></pre><h2 id="如何删除文件中的’-M’符号？"><a href="#如何删除文件中的’-M’符号？" class="headerlink" title="如何删除文件中的’^M’符号？"></a>如何删除文件中的’^M’符号？</h2><p>其实这个是一个dos版本的换行符，一般是windows相关编辑器引入的。</p><p>不过在VIM中可以手动删除掉。</p><ol><li><p>删除掉指定位置</p><p> :%s/^M//g</p></li></ol><p>‘^M’是在类插入模式下，使用<C-v>+<CR>打印出来的。</p><p>NOTE: <C-V>可以打印不可见字符。</p><ol start="2"><li><p>格式化整个文件，并保存</p><p> :set ff=unix<br> :w<br> :set ff=dos<br> :w</p></li></ol>]]></content>
       
       
       
@@ -452,11 +471,11 @@
     
     
     <entry>
-      <title>VimNote/vim/vim-built-in-tips</title>
-      <link href="/2019/11/18/VimNote/vim/vim-built-in-tips/"/>
-      <url>/2019/11/18/VimNote/vim/vim-built-in-tips/</url>
+      <title>VimNote/vim/vim-grep</title>
+      <link href="/2019/11/18/VimNote/vim/vim-grep/"/>
+      <url>/2019/11/18/VimNote/vim/vim-grep/</url>
       
-        <content type="html"><![CDATA[<h1 id="VIM内置功能的使用技巧"><a href="#VIM内置功能的使用技巧" class="headerlink" title="VIM内置功能的使用技巧"></a>VIM内置功能的使用技巧</h1><p>很多开发者都狂热于VIM的可定制话，并迷失在VIM众多插件的海洋中，无法自拔。</p><p>其实VIM作为一个好用的文本编辑器，已经内置了很多好用的功能，一起看看吧。</p><p>使用内置技巧有一个好处，那就是你可以在不同的机器上有相同的动作，<br>别人看的眼花缭乱的时候，你可以牛逼轰轰的拂袖而去。</p><h2 id="如何手动reload你的文件到内存？"><a href="#如何手动reload你的文件到内存？" class="headerlink" title="如何手动reload你的文件到内存？"></a>如何手动reload你的文件到内存？</h2><p>有时候我们对一个文件可能有多个buffer与之对应，并且可能在不同的时候进行修改，<br>这很可能引起同步问题，那使用VIm的时候如何使用手动更新当前文件的内存映射呢？</p><pre><code>:e</code></pre><p>就这么简单的一句话。</p><p>如果你不想要存储你当时的所有修改，请使用下面的指令将文件的内存映射恢复到原来(或者其他地方已经修改后的版本)</p><pre><code>:e!</code></pre><h2 id="如何删除文件中的’-M’符号？"><a href="#如何删除文件中的’-M’符号？" class="headerlink" title="如何删除文件中的’^M’符号？"></a>如何删除文件中的’^M’符号？</h2><p>其实这个是一个dos版本的换行符，一般是windows相关编辑器引入的。</p><p>不过在VIM中可以手动删除掉。</p><ol><li><p>删除掉指定位置</p><p> :%s/^M//g</p></li></ol><p>‘^M’是在类插入模式下，使用<C-v>+<CR>打印出来的。</p><p>NOTE: <C-V>可以打印不可见字符。</p><ol start="2"><li><p>格式化整个文件，并保存</p><p> :set ff=unix<br> :w<br> :set ff=dos<br> :w</p></li></ol>]]></content>
+        <content type="html"><![CDATA[<h2 id="vim内置搜索功能"><a href="#vim内置搜索功能" class="headerlink" title="vim内置搜索功能"></a>vim内置搜索功能</h2><p>很多插件都提供了这样的功能，不过我们看看vim内置的文件搜索功能：</p><p>帮助文档：</p><pre><code>:help vimgrep</code></pre><p>这里面有很多可以定制的内容，下面仅仅讲述使用grep后端完成搜索。</p><p>常用命令及适用场景：</p><blockquote><p>搜索本文件中的关键字</p></blockquote><pre><code>:vim[grep] /keyword/ % | copen</code></pre><blockquote><p>搜索当前文件所在目录的所有文件中的关键字</p></blockquote><pre><code>:cd %:h 或者已经使用了autochdir 选项:vim[grep] /keyword/ * | copen</code></pre><blockquote><p>递归地搜索指定目录下的所有文件</p></blockquote><pre><code>:vim[grep] /keyword/ ../** | copen:vim[grep] /keyword/ ../ | copen</code></pre><blockquote><p>搜索多个指定目录下的所有文件</p></blockquote><pre><code>:vim[grep] /keyword/ path_01/** | copen:vim[grep] /keyword/ ../path_02/** ../../path_03/* | copen</code></pre><p>不过这个搜索并不是异步的，所以你应该知道你要搜索的内容大致应该在那里。</p><p>使用<code>&lt;C-w&gt; o</code>可以关闭多有除了当前窗口外的其他窗口，自己琢磨吧。</p><p>重新映射一个上下窗口跳转的快捷键可能会很不错：</p><pre><code>nmap &lt;C-J&gt; &lt;C-W&gt;jnmap &lt;C-K&gt; &lt;C-W&gt;k</code></pre><h2 id="vim同时搜索多个关键字"><a href="#vim同时搜索多个关键字" class="headerlink" title="vim同时搜索多个关键字"></a>vim同时搜索多个关键字</h2><p>以‘或’的形式，同时搜索多个关键字：</p><pre><code>/\vword01|word02/word01\|word02</code></pre><p>以‘与’的形式，同时搜索多个关键字：(使用类似perl形式的正则表达式)</p><pre><code>/\vword01(some pattern)word02</code></pre>]]></content>
       
       
       
