@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>VimNote/linux-tools/find | OrexZ</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="VimNote/linux-tools/find"/>
+  <meta property="og:site_name" content="OrexZ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'true']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">VimNote/linux-tools/find</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2020-01-01</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="使用find命令"><a href="#使用find命令" class="headerlink" title="使用find命令"></a>使用find命令</h1><p>find命令是查找文件的好帮手，请不要光依靠grep来搜索大量文件，<br>当文件不多时，grep可以快速的满足要求，这个快速是相对的，也就是人可以接受的范围<br>而当文件很多的时候，请使用find,xargs,grep三兄弟完成高效的文件查找与字符过滤。</p>
+<h2 id="帮助文档"><a href="#帮助文档" class="headerlink" title="帮助文档"></a>帮助文档</h2><pre><code>man find # info find</code></pre><h2 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h2><p><code>find</code>指令默认会递归查找指定目录及其子目录</p>
+<h3 id="列出当前目录及子目录下的所有空文件或者空目录"><a href="#列出当前目录及子目录下的所有空文件或者空目录" class="headerlink" title="列出当前目录及子目录下的所有空文件或者空目录"></a>列出当前目录及子目录下的所有空文件或者空目录</h3><pre><code>find . -empty</code></pre><h3 id="搜索并排除指定的子目录"><a href="#搜索并排除指定的子目录" class="headerlink" title="搜索并排除指定的子目录"></a>搜索并排除指定的子目录</h3><pre><code>find . -path &apos;./sk&apos; -prune -o name &apos;*.txt&apos; -print</code></pre><p>查找除了子目录’sk’目录下的所有txt文件</p>
+<pre><code>find . -path &apos;./.git&apos; -prune -o -path &apos;.vim&apos; -prune -o -name &apos;*.md&apos; -print</code></pre><p>排除选项-prune控制前面的-path指定的目录，排除多个目录使用-o选项隔开</p>
+<h3 id="使用find指令执行外部脚本"><a href="#使用find指令执行外部脚本" class="headerlink" title="使用find指令执行外部脚本"></a>使用find指令执行外部脚本</h3><pre><code>find . -exec ./outside.sh {} \;</code></pre><p>outside.sh可以自己定制，传入的参数{}是find找到的每个输出结果。</p>
+<p>NOTE: -exec 只能接受一条指令</p>
+<h3 id="动作之前加确认"><a href="#动作之前加确认" class="headerlink" title="动作之前加确认"></a>动作之前加确认</h3><pre><code>find $HOME/. -name &quot;*.txt&quot; -ok rm {} \;</code></pre><p>交互选项-ok就是一个不错的选择</p>
+<h3 id="找到指定用户或者指定群组的所属文件"><a href="#找到指定用户或者指定群组的所属文件" class="headerlink" title="找到指定用户或者指定群组的所属文件"></a>找到指定用户或者指定群组的所属文件</h3><pre><code>find . -type f -user rex
+find . -type f -group rex-group</code></pre><h3 id="查找文件大小超过500M的文件"><a href="#查找文件大小超过500M的文件" class="headerlink" title="查找文件大小超过500M的文件"></a>查找文件大小超过500M的文件</h3><pre><code>find . -size +500M -type f</code></pre><h3 id="查找中的排除操作"><a href="#查找中的排除操作" class="headerlink" title="查找中的排除操作"></a>查找中的排除操作</h3><pre><code>find . -type f ! -name &apos;*.txt&apos;</code></pre><p>注意叹号’!’，这之后的参数是排除的选项<br>这个选项也可以配合-o选项进行连续排除</p>
+<pre><code>find . ! -name &quot;*.md&quot; -o ! -name &quot;*.png&quot;</code></pre><h3 id="为什么-c报错"><a href="#为什么-c报错" class="headerlink" title="为什么*.c报错"></a>为什么*.c报错</h3><p>其实，这不是一个bug，查看手册可知，*.c被shell解释为连续的文件名，然后传递给find指令，这不是它需要的，如</p>
+<pre><code>find . -name *.c # --&gt; find . -name a.c b.c c.c d.c --&gt; error</code></pre><p>因此，正确的做法是，不用shell来扩展，而让find命令自行完成*字符解析。</p>
+<pre><code>find . -name \*.c
+find . -name &quot;*.c&quot;</code></pre>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2020/01/01/VimNote/linux-tools/xargs/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2020/01/01/VimNote/linux-tools/mount/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

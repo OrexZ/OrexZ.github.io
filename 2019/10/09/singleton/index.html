@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>单例模式 | OrexZ</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="单例模式"/>
+  <meta property="og:site_name" content="OrexZ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'true']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">单例模式</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-10-09</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <p>大家好，我是“红桃C”。</p>
+<p>这篇文章和大家讨论下单例模式的C语言实现。</p>
+<p>对于C语言来说，由于并没有完整的类的概念，所以也不会如其他高级语言那样，需要刻意设计单例模式。</p>
+<p>对于设计模式而言，就是一种思想，所以从理论上来讲，并不会限制由什么来实现它。</p>
+<h2 id="单例模式的概念"><a href="#单例模式的概念" class="headerlink" title="单例模式的概念"></a>单例模式的概念</h2><blockquote>
+<p>指一个类只有一个实例，且该类能自行创建这个实例的一种模式。</p>
+</blockquote>
+<p>这是对于有‘类’这样概念的高级语言来说，对于C语言来说，可以这样描述：</p>
+<p>一个指定类型的实例只在内存中存在一个，这个实例的构建可以是编译时静态构建的，<br>也可以是运行时动态创建的，外部用户需要通过统一的访问点来获得它。</p>
+<h2 id="单例模式的特点"><a href="#单例模式的特点" class="headerlink" title="单例模式的特点"></a>单例模式的特点</h2><p>基本上它的特点有三个</p>
+<ol>
+<li>内存中只有一个这样类型或者类的实例</li>
+<li>该实例对象可以静态创建和动态创建</li>
+<li>如果访问该对象，必须通过统一的访问接口</li>
+</ol>
+<h2 id="单例模式的设计与实现"><a href="#单例模式的设计与实现" class="headerlink" title="单例模式的设计与实现"></a>单例模式的设计与实现</h2><p>实现代码托管在github上，可以在<a href="https://github.com/OrexZ/C_pattern" target="_blank" rel="noopener">这里</a>找到所有模式的实现，然后找到你关注的模式，对比本文的分析来理解。</p>
+<p>本文使用‘身份唯一’案例，来说明：<br>在中国，每个人对应一个身份证，并且他的信息是唯一的，<br>在设计该模式的时候，需要知道两个对象，<br>一个是个人，也就是身份信息（被访问者）<br>另一个是民政局，也就是访问个人信息的机构（访问者）</p>
+<p>代码案例实现民政局查找个人身份。</p>
+<p>这里还是再强调下，对于C语言来说内存的分配需要自己来实现，所以也就有了，</p>
+<ol>
+<li>编译时，分配常驻内存的实例，对应饿汉单例模式</li>
+<li>运行时，使用malloc动态分配实例，对应懒汉单例模式</li>
+</ol>
+<p>懒汉单例模式，顾名思义，就是在需要它的时候才去创建实例，实现源码在<a href="https://github.com/OrexZ/C_pattern/tree/master/section_01/singleton_02" target="_blank" rel="noopener">这里</a>。<br>饿汉单例模式，说的是在编译构建程序时就开始创建实例，实现源码在<a href="https://github.com/OrexZ/C_pattern/tree/master/section_01/singleton_01" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="单例模式的适用场景"><a href="#单例模式的适用场景" class="headerlink" title="单例模式的适用场景"></a>单例模式的适用场景</h2><p>如果说到设计模式的适用场景，一般指它的优点或者强项，毕竟只有擅长的领域才是适用场景。</p>
+<p>优点：<br>占用内存少<br>访问效率高<br>频繁实例化与销毁时效率提高明显</p>
+<p>场景：</p>
+<ol>
+<li>某些场景中，需要用到的实例是唯一的，即只要求生成一个对象的时候，如一个公交车的司机等。</li>
+<li>当对象实例需要被共享的场合。由于单例模式只允许创建一个对象，共享该对象可以节省内存，并加快对象访问速度。如数据库的连接池等。</li>
+<li>当某类型需要频繁实例化，而创建的对象又频繁被销毁的时候，如多线程的线程池、网络连接池等。</li>
+</ol>
+<p>实际应用的例子：<br>在计算机系统中，还有 Windows 的回收站，多线程中的线程池、显卡的驱动程序对象、数据库的连接池、应用程序中的对话框、系统中的缓存等常常被设计成单例。</p>
+<h2 id="单例模式的扩展"><a href="#单例模式的扩展" class="headerlink" title="单例模式的扩展"></a>单例模式的扩展</h2><p>一般单例模式可以扩展为有限个数的多例模式，这个其实很容易扩展，按照本文的例子，自己尝试下吧。</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			
+			
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

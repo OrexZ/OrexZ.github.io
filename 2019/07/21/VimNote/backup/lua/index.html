@@ -1,0 +1,558 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Lua | OrexZ</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Lua"/>
+  <meta property="og:site_name" content="OrexZ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'true']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">Lua</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-07-21</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+
+  
+  <div class="col-xs-12 col-sm-9 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <p>本文主要介绍关于Lua语言的使用技巧和设计细节。</p>
+<h2 id="Lua如何安装？"><a href="#Lua如何安装？" class="headerlink" title="Lua如何安装？"></a>Lua如何安装？</h2><p>Lua语言的官方网站：<a href="https://www.lua.org/" target="_blank" rel="noopener">https://www.lua.org/</a></p>
+<p>安装的步骤简记如下：<br>编译安装时需要注意依赖的库 <em>readline</em></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">if</span> on Centos</span><br><span class="line">yum install  readline-devel</span><br><span class="line"></span><br><span class="line"># <span class="keyword">if</span> on Ubuntu <span class="keyword">or</span> Debian</span><br><span class="line">apt-get install libreadline-dev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">curl -R -O http://www.lua.org/ftp/lua<span class="number">-5.3</span><span class="number">.5</span>.tar.gz</span><br><span class="line">tar zxf lua<span class="number">-5.3</span><span class="number">.5</span>.tar.gz</span><br><span class="line">cd lua<span class="number">-5.3</span><span class="number">.5</span></span><br><span class="line">make linux test</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua-是否可以交互？"><a href="#Lua-是否可以交互？" class="headerlink" title="Lua 是否可以交互？"></a>Lua 是否可以交互？</h2><p>使用过lua的程序员可能都清楚，lua是一门解释型语言，提供解释器，并且提供交互式编程接口。<br>你只需要使用简单的敲击lua就可以进入交互模式。</p>
+<h2 id="如何修改Lua交互模式的提示符？"><a href="#如何修改Lua交互模式的提示符？" class="headerlink" title="如何修改Lua交互模式的提示符？"></a>如何修改Lua交互模式的提示符？</h2><p>修改lua交互模式的提示符，可以简单的定义一个全局变量来进行处理：</p>
+<p>第一种：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua -e <span class="string">"_PROMPT=' lua&gt; '"</span> -i</span><br></pre></td></tr></table></figure>
+
+<p>第二种：<br>写一个lua文件，内容如下：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: prompt.lua</span></span><br><span class="line">_PROMPT = <span class="string">' lua&gt; '</span>_</span><br></pre></td></tr></table></figure>
+<p>然后运行文件并切到交互式模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua -i prompt.lua</span><br></pre></td></tr></table></figure>
+
+<p>第三种：<br>使用lua默认的环境变量进行前置代码运行，这个环境变量是解释器所认识的内容，这里先不用关心。<br>环境变量为 LUA_INIT, 具体步骤如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="built_in">export</span> LUA_INIT=<span class="string">"_PROMPT=' lua&gt; '"</span>; lua -i) <span class="comment">#注意这里的分号，需要明确-i参数的所属，否则保错,外面的括号是shell隔离环境的好办法</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LUA_INIT=<span class="string">"@/path/to/prompt.lua"</span></span><br><span class="line">lua -i</span><br></pre></td></tr></table></figure>
+
+<p>撤销动作如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> LUA_INIT</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中打印环境arg表的一些怪异现象？"><a href="#Lua中打印环境arg表的一些怪异现象？" class="headerlink" title="Lua中打印环境arg表的一些怪异现象？"></a>Lua中打印环境arg表的一些怪异现象？</h2><p>lua默认的命令行参数会存储在arg table中，而使用这个表的时候往往新手会有点混乱，实例如下：<br>测试程序：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: arg.lua</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"arg: "</span>, <span class="built_in">arg</span>)</span><br><span class="line">pl = <span class="built_in">string</span>.<span class="built_in">rep</span>(<span class="string">'-'</span>, <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show_all_args_v1</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="keyword">for</span> i,v <span class="keyword">in</span> <span class="built_in">ipairs</span>(a) <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"[#"</span>,i,<span class="string">"]:"</span>,v)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show_all_args_v2</span><span class="params">(a)</span></span></span><br><span class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(a) <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"[#"</span>,k,<span class="string">"]:"</span>,v)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pl,<span class="string">"may be you saw as below"</span>,pl)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"total number of arg:"</span>, #<span class="built_in">arg</span>)</span><br><span class="line">show_all_args_v1(<span class="built_in">arg</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pl,<span class="string">"real arg as below"</span>,pl)</span><br><span class="line"><span class="keyword">local</span> <span class="built_in">len</span> = <span class="function"><span class="keyword">function</span> <span class="params">(a)</span></span> <span class="keyword">local</span> i=<span class="number">0</span> <span class="keyword">for</span> _,_ <span class="keyword">in</span> <span class="built_in">pairs</span>(a) <span class="keyword">do</span> i=i+<span class="number">1</span> <span class="keyword">end</span> <span class="keyword">return</span> i <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">show_all_args_v2(<span class="built_in">arg</span>)</span><br></pre></td></tr></table></figure>
+
+<p>测试结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./arg.lua a b c</span><br><span class="line">arg: 	table: 0x20199f0</span><br><span class="line">--------------------	may be you saw as below	--------------------</span><br><span class="line">total number of arg:	3</span><br><span class="line">[<span class="comment">#	1	]:	a</span></span><br><span class="line">[<span class="comment">#	2	]:	b</span></span><br><span class="line">[<span class="comment">#	3	]:	c</span></span><br><span class="line">--------------------	real arg as below	--------------------</span><br><span class="line">total number of arg:	5</span><br><span class="line">[<span class="comment">#	1	]:	a</span></span><br><span class="line">[<span class="comment">#	2	]:	b</span></span><br><span class="line">[<span class="comment">#	3	]:	c</span></span><br><span class="line">[<span class="comment">#	0	]:	./arg.lua</span></span><br><span class="line">[<span class="comment">#	-1	]:	lua</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(base) ➜  lua-learning git:(master) lua -e <span class="string">"just_for_test=100"</span> ./arg.lua a b c </span><br><span class="line">arg: 	table: 0xc149f0</span><br><span class="line">--------------------	may be you saw as below	--------------------</span><br><span class="line">total number of arg:	3</span><br><span class="line">[<span class="comment">#	1	]:	a</span></span><br><span class="line">[<span class="comment">#	2	]:	b</span></span><br><span class="line">[<span class="comment">#	3	]:	c</span></span><br><span class="line">--------------------	real arg as below	--------------------</span><br><span class="line">total number of arg:	7</span><br><span class="line">[<span class="comment">#	1	]:	a</span></span><br><span class="line">[<span class="comment">#	2	]:	b</span></span><br><span class="line">[<span class="comment">#	3	]:	c</span></span><br><span class="line">[<span class="comment">#	0	]:	./arg.lua</span></span><br><span class="line">[<span class="comment">#	-3	]:	lua</span></span><br><span class="line">[<span class="comment">#	-2	]:	-e</span></span><br><span class="line">[<span class="comment">#	-1	]:	just_for_test=100</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：<br>一般看到上面的程序和验证结果就已经了解了大概的端倪，这里做下简单的分析。</p>
+<ol>
+<li>首先lua中的table是一个符合型的结构，他可以存储所谓的数组或者字典(关联数组)。</li>
+<li>lua解释器会把所有的命令行参数全部收集起来放在arg table中。</li>
+<li>lua中table其实是关联数组，也就是hash速查表的实现方式，之所以可以使用数组，那时因为table认识1,2,3这样的key，并且明白如何解析。</li>
+<li>arg table中参数是按照‘顺序’排列的，并且看起来可以按照数组的形式引用它们。</li>
+<li>ipairs和pairs的区别也很明显，一个计算从数字1开始的能够按照数组样式索引的函数：ipairs，另一个是索引标准hashtable的key:value方法：pairs</li>
+<li>arg[0]表示脚本名字，也是一个看似的分界线，并且复数的索引也是有规律可寻的。</li>
+</ol>
+<h2 id="用在命令行参数解析时的三个点-…-？"><a href="#用在命令行参数解析时的三个点-…-？" class="headerlink" title="用在命令行参数解析时的三个点(…)？"></a>用在命令行参数解析时的三个点(…)？</h2><p>lua提供一种可变参数的支持，和C语言很像，在命令行传入参数的时候也可以使用它来替代arg table，不过有一些需要注意的地方。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: arg_for_tree_points.lua</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"... content:"</span>, ...)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"... type:"</span>, <span class="built_in">type</span>(...))</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">show_args</span><span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">for</span> i,_s <span class="keyword">in</span> <span class="built_in">ipairs</span>(t) <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"["</span>,i,<span class="string">"]:"</span>,<span class="built_in">string</span>.<span class="built_in">byte</span>(_s,<span class="number">1</span>,#_s))</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">show_args(&#123;...&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./arg_for_tree_points.lua a b c          </span><br><span class="line">... content:	a	b	c</span><br><span class="line">... <span class="built_in">type</span>:	string</span><br><span class="line">[	1	]:	97</span><br><span class="line">[	2	]:	98</span><br><span class="line">[	3	]:	99</span><br></pre></td></tr></table></figure>
+
+<p>上面的内容看起来还不错，不过它隐藏了一个bug，当不传入参数的时候，就会保错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./arg_for_tree_points.lua</span><br><span class="line">... content:</span><br><span class="line">lua: ./arg_for_tree_points.lua:3: bad argument <span class="comment">#1 to 'type' (value expected)</span></span><br><span class="line">stack traceback:</span><br><span class="line">	[C]: <span class="keyword">in</span> <span class="keyword">function</span> <span class="string">'type'</span></span><br><span class="line">	./arg_for_tree_points.lua:3: <span class="keyword">in</span> main chunk</span><br><span class="line">	[C]: <span class="keyword">in</span> ?</span><br></pre></td></tr></table></figure>
+
+<p>这是因为我们没有传入参数，那么程序里的三个点根本没有被使用，错误是由lua虚拟机基础C代码报出来的，所以尽量使用arg作为脚本参数解析原料。</p>
+<h2 id="先与脚本文件的运行技巧"><a href="#先与脚本文件的运行技巧" class="headerlink" title="先与脚本文件的运行技巧"></a>先与脚本文件的运行技巧</h2><p>有时候，我们想要在运行脚本前运行一些其它前置条件或者陪置内容，lua中提供了一些方法可以尝试，这里列出两种：</p>
+<p>第一种：<br>使用命令行传递lua代码</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: which_first.lua</span></span><br><span class="line"><span class="built_in">print</span>(Iam)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua -e <span class="string">"Iam=100"</span> ./which_first.lua</span><br><span class="line">100</span><br></pre></td></tr></table></figure>
+<p>第二种：<br>使用环境变量LUA_INIT做preload定制</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: test_preload.lua</span></span><br><span class="line"><span class="built_in">print</span>(preload_var)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) (<span class="built_in">export</span> LUA_INIT=<span class="string">"preload_var = 'so....easy'"</span>; lua test_preload.lua)</span><br><span class="line">so....easy</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) (<span class="built_in">export</span> LUA_INIT=<span class="string">"@/home/rex/mz/mz-lua/self/lua-learning/preload_from_LUA_INIT.lua"</span>;lua test_preload.lua)</span><br><span class="line">so....easy</span><br></pre></td></tr></table></figure>
+
+<h2 id="lua中的真与假"><a href="#lua中的真与假" class="headerlink" title="lua中的真与假"></a>lua中的真与假</h2><p>在lua中，空字符串和数字0都表示真，这和其它语言不同语言注意。</p>
+<p>那么在lua中，只有 false和nil被视为假，其它的内容都是真～</p>
+<p>所以，在lua判断中，最好显示的比较内容，不要取巧。</p>
+<h2 id="在模式中的引号"><a href="#在模式中的引号" class="headerlink" title="在模式中的引号"></a>在模式中的引号</h2><p>lua没有字符串和字符的区别，当然如果你深入后，可以自己实现。<br>不过通常来说最好按照统一的风格来书写代码。</p>
+<p>这里强调在模式中，一般引号并不是使用％来转义，而是使用标准的lua程序的\来转义。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; string.match(<span class="string">"sss\"mmmm"</span>, <span class="string">"^[^h].-\"%a*$"</span>)</span><br><span class="line">sss<span class="string">"mmmm</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在lua中的数组索引"><a href="#在lua中的数组索引" class="headerlink" title="在lua中的数组索引"></a>在lua中的数组索引</h2><p>lua中数组索引从1开始，这已经是惯例，不过如果你想要从0开始构造一个table也是可以的，如：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; t = &#123; [<span class="number">0</span>] = <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>&#125;</span><br><span class="line">&gt; t</span><br><span class="line"></span><br><span class="line">&gt; #t</span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line">&gt; t = &#123; <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>&#125;</span><br><span class="line">&gt; #<span class="number">3</span></span><br><span class="line"></span><br><span class="line">&gt; #t</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>从0开始是可以，但如果这样你就没有办法享受lua提供的各种内置功能，比如这里的数组长度，为2而不是3.</p>
+<h2 id="lua-中的变量的作用域，生命周期，存储空间"><a href="#lua-中的变量的作用域，生命周期，存储空间" class="headerlink" title="lua 中的变量的作用域，生命周期，存储空间"></a>lua 中的变量的作用域，生命周期，存储空间</h2><p>这里先分析作用域，后虚内容再补上。<br>通过例子来看应该是最好的，那么接下来看看lua怎么使用变量的</p>
+<p>变量的遮蔽</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: block.lua</span></span><br><span class="line"></span><br><span class="line">a = <span class="string">"global a"</span></span><br><span class="line"><span class="keyword">local</span> a = <span class="string">"local a"</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./block.lua</span><br><span class="line"><span class="built_in">local</span> a</span><br></pre></td></tr></table></figure>
+<p>这里如果要使用全局变量a，只能在使用前保存，后续再恢复。</p>
+<p>lua对于代码快的界定和其它语言差不多，如：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: block.lua</span></span><br><span class="line"></span><br><span class="line">a = <span class="string">"global a"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> a = <span class="string">"in do"</span></span><br><span class="line">    <span class="built_in">print</span>(a)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sample</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> a = <span class="string">"sample"</span></span><br><span class="line">    <span class="built_in">print</span>(a)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">sample()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> out_a = <span class="string">"out_a"</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_out</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">local</span> out_a = <span class="string">"_out_a"</span></span><br><span class="line">        <span class="built_in">print</span>(out_a)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="literal">true</span> <span class="keyword">then</span></span><br><span class="line">            out_a = <span class="string">"in if"</span></span><br><span class="line">            <span class="built_in">print</span>(out_a)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="built_in">print</span>(out_a)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    _out()</span><br><span class="line">    <span class="built_in">print</span>(out_a)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">out()</span><br><span class="line"></span><br><span class="line">x = <span class="number">10</span></span><br><span class="line"><span class="keyword">local</span> i = <span class="number">8</span></span><br><span class="line"><span class="keyword">while</span> i &lt; x <span class="keyword">do</span> - 这里的x是global的，而不是里面的<span class="keyword">local</span>，被记住了</span><br><span class="line">    <span class="keyword">local</span> x = <span class="number">11</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a = &#123; <span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span> &#125;</span><br><span class="line"><span class="keyword">local</span> i = <span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> a[i] <span class="keyword">do</span> <span class="comment">-- 注意这里的索引跟着变化了</span></span><br><span class="line">    <span class="built_in">print</span>(a[i])</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> c = <span class="number">100</span></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">    c = <span class="number">1000</span></span><br><span class="line">    <span class="keyword">local</span> m = <span class="number">999</span></span><br><span class="line"><span class="keyword">until</span> m &lt; c <span class="comment">-- 这里的m可以使用</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> m &lt; <span class="number">10</span> <span class="keyword">do</span> <span class="comment">-- 这里的m不能用</span></span><br><span class="line">    <span class="keyword">local</span> m = <span class="number">9</span></span><br><span class="line">    m = m + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(m)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./block.lua</span><br><span class="line"><span class="keyword">in</span> <span class="keyword">do</span></span><br><span class="line">global a</span><br><span class="line">sample</span><br><span class="line">global a</span><br><span class="line">_out_a</span><br><span class="line"><span class="keyword">in</span> <span class="keyword">if</span></span><br><span class="line"><span class="keyword">in</span> <span class="keyword">if</span></span><br><span class="line">out_a</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">20</span><br><span class="line">30</span><br><span class="line">1000</span><br><span class="line">lua: ./block.lua:58: attempt to compare nil with number</span><br><span class="line">stack traceback:</span><br><span class="line">	./block.lua:58: <span class="keyword">in</span> main chunk</span><br><span class="line">	[C]: <span class="keyword">in</span> ?</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中的break和retuen语句"><a href="#Lua中的break和retuen语句" class="headerlink" title="Lua中的break和retuen语句"></a>Lua中的break和retuen语句</h2><p>由于语法构造的原因，在lua中break与return必须是程序块的最后一条语句；<br>当我们需要在程序中间return或者break的时候，可以使用下面的技巧：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">()</span></span></span><br><span class="line">  <span class="keyword">return</span> <span class="comment">-- fail</span></span><br><span class="line">  <span class="keyword">do</span> <span class="keyword">return</span> <span class="keyword">end</span> <span class="comment">-- nice</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中的形参作用域"><a href="#Lua中的形参作用域" class="headerlink" title="Lua中的形参作用域"></a>Lua中的形参作用域</h2><p>在lua中，形参的作用域和其它语言一样，被限定为本地作用域。<br>只所以强调这个，也是为了对前文的变量作用域一个补充。</p>
+<h2 id="形参与实参的对应关系"><a href="#形参与实参的对应关系" class="headerlink" title="形参与实参的对应关系"></a>形参与实参的对应关系</h2><p>实参和形参的对应关系如下：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(a, b)</span></span> <span class="keyword">return</span> a <span class="keyword">or</span> b <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">f(<span class="number">3</span>) <span class="comment">-- a = 3, b = nil</span></span><br><span class="line">f(<span class="number">4</span>,<span class="number">5</span>) <span class="comment">-- a = 4, b = 5</span></span><br><span class="line">f(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>) <span class="comment">-- a = 3, b = 4, 5 被丢弃</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数的多重返回值"><a href="#函数的多重返回值" class="headerlink" title="函数的多重返回值"></a>函数的多重返回值</h2><p>在lua中，函数可以返回多个值，它的描述应该是这样的：</p>
+<ol>
+<li><p>如果只是作为独立的表达式调用，那么所有返回值被丢弃</p>
+<p> string.find(“hello”, “he”)</p>
+</li>
+<li><p>如果函数调用作为表达式的一部分，并且不是表达式需要的最后一个参数的时候，只返回第一个值，其它的值被丢弃</p>
+<p> print(“test”,string.find(“hello”, “h”),100)</p>
+</li>
+<li><p>如果函数调用作为表达式的一部分，并且是表达式需要的最后一个，或者唯一一个参数的时候，它将返回所有的返回值</p>
+<p> print(string.find(“hello”, ‘h’))</p>
+</li>
+</ol>
+<p>函数和变量是第一元素，可以看成是同等级别，函数的返回值也和变量一样，也有多值分配功能：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start, <span class="keyword">end</span> = <span class="built_in">string</span>.<span class="built_in">find</span>(<span class="string">"hello"</span>, <span class="string">'h'</span>)</span><br><span class="line">start = <span class="built_in">string</span>.<span class="built_in">find</span>(<span class="string">"hello"</span>, <span class="string">'h'</span>)</span><br><span class="line">start, <span class="keyword">end</span>, nothing = <span class="built_in">string</span>.<span class="built_in">find</span>(<span class="string">"hello"</span>, <span class="string">'h'</span>), <span class="string">"this is nothing"</span></span><br><span class="line">t = &#123; <span class="built_in">string</span>.<span class="built_in">find</span>(<span class="string">'hello'</span>, <span class="string">'h'</span>) &#125;</span><br><span class="line">t = &#123; <span class="number">100</span>, <span class="built_in">string</span>.<span class="built_in">find</span>(<span class="string">'hello'</span>, <span class="string">'h'</span>), <span class="number">200</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中函数的重载？"><a href="#Lua中函数的重载？" class="headerlink" title="Lua中函数的重载？"></a>Lua中函数的重载？</h2><p>在lua或者python这类语言中，没有函数重载的功能，但有了可变参数。</p>
+<p>如果复写了函数会怎么样呢？我们看看：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: override.lua</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello 1"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello 2"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(hello())</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello 3"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(hello())</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span> <span class="params">()</span></span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello 4"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">print</span>(hello())</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(hello())</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./override.lua</span><br><span class="line">hello 2</span><br><span class="line">hello 3</span><br><span class="line">hello 4</span><br><span class="line">hello 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中的可变形参，三个点的使用"><a href="#Lua中的可变形参，三个点的使用" class="headerlink" title="Lua中的可变形参，三个点的使用"></a>Lua中的可变形参，三个点的使用</h2><p>在lua中支可变参数，使用方法和C语言一致，不过需要注意的是：</p>
+<ol>
+<li>三个点是一个表达式，并且表示的是一个string类型变量</li>
+<li>使用type时，如果没有参数给它，便会保错</li>
+<li>支持string类型的所有操作</li>
+</ol>
+<p>来个例子：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: var.lua</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">return</span> ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>( test(<span class="number">19</span>,<span class="number">20</span>,<span class="number">21</span>) )</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./var.lua </span><br><span class="line">19	20	21</span><br></pre></td></tr></table></figure>
+
+<p>一般三个点符号可以配合table的构造式一起使用：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t = &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在变长参数中可能会包含很多的值是nil的情况，这时候，需要使用内置的select函数来完成任务，过滤掉不要的nil参数</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: var2.lua</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">how_to_use_select</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">for</span> i=<span class="number">1</span>, <span class="built_in">select</span>(<span class="string">'#'</span>,...) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> a = <span class="built_in">select</span>(i, ...)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'pop one: '</span>,a)</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">select</span>(i,...))</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">how_to_use_select(<span class="string">'a'</span>,<span class="string">'b'</span>, <span class="number">100</span>, <span class="literal">nil</span>, <span class="string">'m'</span>, <span class="literal">nil</span>, <span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">how_to_use_select2</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> tt = &#123;<span class="built_in">select</span>(<span class="number">1</span>, ...)&#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(tt))</span><br><span class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(tt) <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(k,v)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"@@ next test:"</span>)</span><br><span class="line">how_to_use_select2(<span class="string">'a'</span>,<span class="string">'b'</span>, <span class="number">100</span>, <span class="literal">nil</span>, <span class="string">'m'</span>, <span class="literal">nil</span>, <span class="string">'hello'</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./var2.lua</span><br><span class="line">pop one: 	a</span><br><span class="line">a	b	100	nil	m	nil	hello</span><br><span class="line">pop one: 	b</span><br><span class="line">b	100	nil	m	nil	hello</span><br><span class="line">pop one: 	100</span><br><span class="line">100	nil	m	nil	hello</span><br><span class="line">pop one: 	nil</span><br><span class="line">nil	m	nil	hello</span><br><span class="line">pop one: 	m</span><br><span class="line">m	nil	hello</span><br><span class="line">pop one: 	nil</span><br><span class="line">nil	hello</span><br><span class="line">pop one: 	hello</span><br><span class="line">hello</span><br><span class="line">@@ next <span class="built_in">test</span>:</span><br><span class="line">table</span><br><span class="line">1	a</span><br><span class="line">2	b</span><br><span class="line">3	100</span><br><span class="line">5	m</span><br><span class="line">7	hello</span><br></pre></td></tr></table></figure>
+
+<p>分析：</p>
+<ol>
+<li>select能够过滤掉nil类型的名字</li>
+<li>select 能够根据传入不同的参数，给出不同的动作</li>
+<li>上面的例子中，select(i,…)是返回从i开始到最后的所有参数，不过通过函数返回赋值操作，只有第一个被用了，其它的被扔掉</li>
+<li>传入 -1 时，从后向前排列参数</li>
+</ol>
+<h2 id="Lua中的命名参数"><a href="#Lua中的命名参数" class="headerlink" title="Lua中的命名参数"></a>Lua中的命名参数</h2><p>在lua中，没有像python一样的命名参数机制，不过，可以变换一种方法，也可以达到一样的效果，如：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">windows</span><span class="params">(t)</span></span></span><br><span class="line"><span class="keyword">if</span> t.name == <span class="string">'tony'</span> <span class="keyword">then</span> <span class="built_in">print</span>(<span class="string">'tony trap'</span>) <span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> t.hello == <span class="string">'world'</span> <span class="keyword">then</span> <span class="built_in">print</span>(<span class="string">'world trap'</span>) <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">windows &#123;hello = <span class="string">'world'</span>, name = <span class="string">'tony'</span>&#125; <span class="comment">-- 注意这里的写法：在lua中，如果函数的参数只有一个，调用的时候可以免去括号</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中的函数语法糖"><a href="#Lua中的函数语法糖" class="headerlink" title="Lua中的函数语法糖"></a>Lua中的函数语法糖</h2><p>在lua中，函数被设计成为第一类元素，和其它变量是等价的，这和python不同，而且函数可以存在任意位置，主要体现在匿名函数.<br>简单的转换如下：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">()</span></span> <span class="keyword">return</span> <span class="number">100</span> <span class="keyword">end</span></span><br><span class="line"><span class="comment">-- equal</span></span><br><span class="line">foo = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="keyword">return</span> <span class="number">100</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span> <span class="params">()</span></span> <span class="keyword">return</span> <span class="number">101</span> <span class="keyword">end</span></span><br><span class="line"><span class="comment">-- equal</span></span><br><span class="line"><span class="keyword">local</span> demo = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="keyword">return</span> <span class="number">101</span> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>由于这样的特性，lua既然可以在任意的地方使用，那么也可以在table中使用，这也是它最强大的地方之一，可以用这个特性来实现很多功能：<br>－－ 面向对象和模块编程</p>
+<h2 id="什么叫‘词法域’？什么又是闭包？"><a href="#什么叫‘词法域’？什么又是闭包？" class="headerlink" title="什么叫‘词法域’？什么又是闭包？"></a>什么叫‘词法域’？什么又是闭包？</h2><p>如果将一个函数写在另一个函数中，那么这个内部函数可以访问外部函数的局部变量（当然也可以是全局变量，不过尽量不要使用），这项特性就叫‘词法域’，而这也是为闭包提供的理论基础。</p>
+<p>简单实例：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: closure.lua</span></span><br><span class="line"></span><br><span class="line">foo = <span class="string">"hello, tom"</span></span><br><span class="line">foo2= <span class="string">"hello, rex"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> so = <span class="string">"easy"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        <span class="built_in">print</span>(so)</span><br><span class="line">        <span class="built_in">print</span>(foo)</span><br><span class="line">        <span class="built_in">print</span>(foo2)</span><br><span class="line">        foo = <span class="number">100</span></span><br><span class="line">        <span class="keyword">local</span> foo2 = <span class="number">100</span></span><br><span class="line">        <span class="built_in">print</span>(foo)</span><br><span class="line">        <span class="built_in">print</span>(foo2)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">demo()()</span><br><span class="line"><span class="built_in">print</span>(foo)</span><br><span class="line"><span class="built_in">print</span>(foo2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    dd = <span class="string">'hello dd'</span></span><br><span class="line">    hello = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="built_in">print</span>(<span class="string">'hello func'</span>) <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(dd)</span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./closure.lua</span><br><span class="line">easy</span><br><span class="line">hello, tom</span><br><span class="line">hello, rex</span><br><span class="line">100</span><br><span class="line">100</span><br><span class="line">100</span><br><span class="line">hello, rex</span><br><span class="line">hello dd</span><br><span class="line">hello func</span><br></pre></td></tr></table></figure>
+
+<p>函数是闭包closure的一个特例，在lua实现中，并没有使用function，而是使用closure来表示函数或者说闭包。</p>
+<p>在前面的实例中有很多内容发人思考，这里再简单做下分析：</p>
+<p>闭包是由一个函数和它所能访问的所有非局部变量组成的，这里的非局部变量在lua中叫做upvalue，这里也需要中点的说明下，<br>看个例子：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: closure2.lua</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getID</span><span class="params">(index)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        index = index + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> index</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">f = getID(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(f())</span><br><span class="line"><span class="built_in">print</span>(f())</span><br><span class="line"><span class="built_in">print</span>(f())</span><br><span class="line"></span><br><span class="line">f2 = getID(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(f2())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newCounter</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        i = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">c = newCounter()</span><br><span class="line"><span class="built_in">print</span>(c())</span><br><span class="line"><span class="built_in">print</span>(c())</span><br><span class="line"></span><br><span class="line">c2 = newCounter()</span><br><span class="line"><span class="built_in">print</span>(c2())</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，index不是内部函数的局部变量，也不是全局变量，在lua中它叫非全局变量，术语为upvalue，<br>虽然函数getID调用完成后，变量的作用域已经跳出来了，可是index仍然被存储保留着，这就是闭包的强大特性。<br>同样的，例子中local i也是这样的upvalue，和index是一样的作用，这个闭包closure特性是经过考验的编程技巧，所以lua也这样的设计它。</p>
+<p>在lua程序设计中有一个例子很有意思，需要这里重点解释下：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- filename: closure3.lua</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    dd = <span class="string">"hello dd"</span></span><br><span class="line">    say = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="built_in">print</span>(<span class="string">"good morning"</span>) <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(dd)</span><br><span class="line">say()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">oldSin = <span class="built_in">math</span>.<span class="built_in">sin</span></span><br><span class="line"><span class="built_in">math</span>.<span class="built_in">sin</span> = <span class="function"><span class="keyword">function</span> <span class="params">(x)</span></span></span><br><span class="line">    <span class="keyword">return</span> oldSin(x*<span class="built_in">math</span>.<span class="built_in">pi</span>/<span class="number">180</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">math</span>.<span class="built_in">sin</span>(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">math</span>.<span class="built_in">sin</span> = oldSin</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> oldSin = <span class="built_in">math</span>.<span class="built_in">sin</span></span><br><span class="line">    <span class="keyword">local</span> k =<span class="built_in">math</span>.<span class="built_in">pi</span>/<span class="number">180</span></span><br><span class="line">    <span class="built_in">math</span>.<span class="built_in">sin</span> = <span class="function"><span class="keyword">function</span> <span class="params">(x)</span></span></span><br><span class="line">        <span class="keyword">return</span> oldSin(x*k)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">math</span>.<span class="built_in">sin</span>(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./closure3.lua</span><br><span class="line">hello dd</span><br><span class="line">good morning</span><br><span class="line">0.17364817766693</span><br><span class="line">0.17364817766693</span><br></pre></td></tr></table></figure>
+
+<p>例子中dd和say是属于do-end块的内容，但可以在文件全局范围内访问，如果不想在全局的块中访问，那么可以使用local限定。<br>第二个是使用do-end实现闭包的概念，完全的隔离旧版本的math.sin而使用封装过的函数，没有想到可以使用do-end配合函数使用closure！</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: nonlocal_func2.lua</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> m = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> w = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">200</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>这也是一个闭包的例子，这个例子说明了下面的方式是可以正确使用的，</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> fucntion m () <span class="keyword">return</span> <span class="number">100</span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">w</span> <span class="params">()</span></span> <span class="keyword">return</span> m() <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>关于局部函数的语法糖和正常函数是一样的。</p>
+<h2 id="非全局函数"><a href="#非全局函数" class="headerlink" title="非全局函数"></a>非全局函数</h2><p>在lua中，非全局函数其实是函数作为第一元素的一个特殊作法，就是将函数放在table中，也正是因为它，lua有了强大的面向对象编程的能力。</p>
+<p>先来看几个例子：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: nonlocal_func.lua</span></span><br><span class="line">Lib = &#123;&#125;</span><br><span class="line">Lib.foo = <span class="function"><span class="keyword">function</span> <span class="params">(x,y)</span></span> <span class="keyword">return</span> x + y <span class="keyword">end</span></span><br><span class="line">Lib.goo = <span class="function"><span class="keyword">function</span> <span class="params">(x,y)</span></span> <span class="keyword">return</span> x - y <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Lib2 = &#123;</span><br><span class="line">    foo = <span class="function"><span class="keyword">function</span> <span class="params">(x,y)</span></span> <span class="keyword">return</span> x + y <span class="keyword">end</span>, <span class="comment">-- note!</span></span><br><span class="line">    goo = <span class="function"><span class="keyword">function</span> <span class="params">(x,y)</span></span> <span class="keyword">return</span> x - y <span class="keyword">end</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lib3 = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Lib3.foo</span> <span class="params">(x,y)</span></span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Lib3.goo</span> <span class="params">(x,y)</span></span></span><br><span class="line">    <span class="keyword">return</span> x - y</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Lib.foo,Lib.goo)</span><br><span class="line"><span class="built_in">print</span>(Lib2.foo,Lib2.goo)</span><br><span class="line"><span class="built_in">print</span>(Lib3.foo,Lib3.goo)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  lua-learning git:(master) lua ./nonlocal_func.lua</span><br><span class="line"><span class="keyword">function</span>: 0x1428ef0	<span class="keyword">function</span>: 0x14290a0</span><br><span class="line"><span class="keyword">function</span>: 0x1428fa0	<span class="keyword">function</span>: 0x1428bc0</span><br><span class="line"><span class="keyword">function</span>: 0x1428c30	<span class="keyword">function</span>: 0x1428c90</span><br></pre></td></tr></table></figure>
+<p>这个例子主要说明的是非全局函数的定义方法。</p>
+<p>非全局函数中的语法糖和正常的函数是差不多的，这里给出一些例子：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span> <span class="params">()</span></span> <span class="keyword">return</span> <span class="literal">nil</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 等价于</span></span><br><span class="line"><span class="keyword">local</span> demo</span><br><span class="line">demo = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="keyword">return</span> <span class="literal">nil</span> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>关于函数的定义需要注意嵌套的情况：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> demo = <span class="function"><span class="keyword">function</span> <span class="params">(n)</span></span></span><br><span class="line">  <span class="keyword">if</span> n &lt; <span class="number">10</span> <span class="keyword">then</span></span><br><span class="line">    sum = sum <span class="keyword">or</span> <span class="number">0</span> + demo(n+<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>这种写法会保错，因为在递归的时候demo还没有定义完全，补救的方法有：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> demo</span><br><span class="line">demo = <span class="function"><span class="keyword">function</span> <span class="params">(n)</span></span></span><br><span class="line">  <span class="keyword">if</span> n &lt; <span class="number">10</span> <span class="keyword">then</span></span><br><span class="line">    sum = sum <span class="keyword">or</span> <span class="number">0</span> + demo(n+<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>或者直接用语法糖的方式, 这和前面的等价：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span> <span class="params">(n)</span></span></span><br><span class="line">  <span class="keyword">if</span> n &lt; <span class="number">10</span> <span class="keyword">then</span></span><br><span class="line">    sum = sum <span class="keyword">or</span> <span class="number">0</span> + demo(n+<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">return</span> sum</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>不过这种方法在间接递归调用就不好使了，那就需要提前声明如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">local f, w</span><br><span class="line">function f () return w() end</span><br><span class="line">function w () return f() end</span><br></pre></td></tr></table></figure>
+
+<p>还有一点需要特别注意，就是，如果使用local这样的关键字修饰function的标签，那么在定义的时候就不要在函数的前面填加local！<br>下面的例子是错误的：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> f</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> g = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">  <span class="keyword">return</span> f()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span> <span class="params">()</span></span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">100</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>如果这样的话，会新建一个内部的函数f，而之前在函数g中使用的那个f已经变成了未定义的状态！！！</p>
+<h2 id="Lua中的尾调用消除"><a href="#Lua中的尾调用消除" class="headerlink" title="Lua中的尾调用消除"></a>Lua中的尾调用消除</h2><p>什么样的函数是尾调用？</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> <span class="params">(x)</span></span> g(x) <span class="keyword">end</span> <span class="comment">-- No</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> <span class="params">(x)</span></span> <span class="keyword">return</span> g(x) <span class="keyword">end</span> <span class="comment">-- Yes</span></span><br></pre></td></tr></table></figure>
+<p>必须符合这样的形式：return func(&lt; args &gt;)</p>
+<p>lua实现的尾调用是利用类似goto的原理，完成stack（栈）的零消耗。</p>
+<p>还有什么样的是非尾调用？</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> g(x) + <span class="number">1</span></span><br><span class="line"><span class="keyword">return</span> x <span class="keyword">or</span> g(x)</span><br><span class="line"><span class="keyword">return</span> (g(x))</span><br><span class="line"><span class="comment">-- etc ...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lua中的协同程序"><a href="#Lua中的协同程序" class="headerlink" title="Lua中的协同程序"></a>Lua中的协同程序</h2><p>下面是一个协同程序实现的管道：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: coroutine.lua</span></span><br><span class="line">productor = coroutine.<span class="built_in">create</span>( <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">        line = <span class="built_in">io</span>.<span class="built_in">read</span>()</span><br><span class="line">        send(line)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">consumer</span> <span class="params">(prod)</span></span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">        line = receive(prod)</span><br><span class="line">        <span class="built_in">io</span>.<span class="built_in">write</span>(line, <span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">send</span> <span class="params">(content)</span></span></span><br><span class="line">    coroutine.<span class="built_in">yield</span>(content)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receive</span> <span class="params">(prod)</span></span></span><br><span class="line">    <span class="built_in">status</span>, content = coroutine.<span class="built_in">resume</span>(prod)</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">consumer(productor)</span><br></pre></td></tr></table></figure>
+
+<p>利用协同程序实现过滤器</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- filename: filter.lua</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">consumer</span> <span class="params">(filter)</span></span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> line = receive(filter)</span><br><span class="line">        <span class="built_in">io</span>.<span class="built_in">write</span>(line, <span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span> <span class="params">(prod)</span></span></span><br><span class="line">    <span class="keyword">return</span> coroutine.<span class="built_in">create</span>( <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        <span class="keyword">for</span> _i=<span class="number">1</span>, <span class="built_in">math</span>.<span class="built_in">huge</span> <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">local</span> _line = receive(prod)</span><br><span class="line">            <span class="keyword">local</span> line = <span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">"%4d: %s"</span>, _i, _line )</span><br><span class="line">            send(line)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receive</span> <span class="params">(prod)</span></span></span><br><span class="line">    <span class="keyword">local</span> <span class="built_in">status</span>, content = coroutine.<span class="built_in">resume</span>(prod)</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">send</span> <span class="params">(content)</span></span></span><br><span class="line">    coroutine.<span class="built_in">yield</span>(content)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">productor = coroutine.<span class="built_in">create</span>( <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> line = <span class="built_in">io</span>.<span class="built_in">read</span>()</span><br><span class="line">        send(line)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line">consumer(filter(productor))</span><br></pre></td></tr></table></figure>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/08/12/VimNote/python/install_diff_python3_on_windows/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/06/25/VimNote/backup/shell/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

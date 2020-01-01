@@ -1,0 +1,483 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>VimNote/linux-tools/grep | OrexZ</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="VimNote/linux-tools/grep"/>
+  <meta property="og:site_name" content="OrexZ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'true']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">VimNote/linux-tools/grep</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-11-19</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h2 id="使用grep"><a href="#使用grep" class="headerlink" title="使用grep"></a>使用grep</h2><p>本章内容主要讲述如何使用linux常用工具grep来搜索文本内容。</p>
+<h3 id="经常查看帮助文档是一个好习惯"><a href="#经常查看帮助文档是一个好习惯" class="headerlink" title="经常查看帮助文档是一个好习惯"></a>经常查看帮助文档是一个好习惯</h3><pre><code>man grep #or info grep</code></pre><h3 id="写在前面的一些内容"><a href="#写在前面的一些内容" class="headerlink" title="写在前面的一些内容"></a>写在前面的一些内容</h3><p>grep的命令行语法格式：</p>
+<pre><code>grep OPTIONS PATTERN INPUT_FILE_NAMES</code></pre><p>grep命令的选项说明：</p>
+<ol>
+<li>一些短选项是符合POSIX.2协议标准的</li>
+<li>长选项都是GNU扩展选项</li>
+</ol>
+<p>什么叫’单词’?<br>grep认定的单词是：下划线，数字，字母组成的内容。</p>
+<p>grep输出的shell状态码：<br>通常情况下，如果能匹配到内容，则退出状态码为0，<br>否则为1。但是如果发生了错误，则退出状态码为2.(除非使用了”-s”或”-q”选项)</p>
+<h3 id="控制匹配模式的选项"><a href="#控制匹配模式的选项" class="headerlink" title="控制匹配模式的选项"></a>控制匹配模式的选项</h3><blockquote>
+<p>-e PATTERN # –regexp=PATTERN’</p>
+</blockquote>
+<p>明确指定使用此处的PATTERN作为待匹配的pattern</p>
+<blockquote>
+<p>-f FILE # –file=FILE</p>
+</blockquote>
+<p>从FILE文件中获取PATERN列表，每行一个。</p>
+<blockquote>
+<p>-i # –ignore-case</p>
+</blockquote>
+<p>忽略大小写</p>
+<blockquote>
+<p>-v # –invert-match</p>
+</blockquote>
+<p>反转匹配结果，优先级高于’-l’选项，后面看到</p>
+<blockquote>
+<p>-w # –word-regexp</p>
+</blockquote>
+<p>全词匹配，如果你输入’abc’，而文本中是’abcd’无法匹配，必须全词匹配。</p>
+<blockquote>
+<p>-x # –line-regexp</p>
+</blockquote>
+<p>全行匹配，什么是一行？就是到’\n’为止。<br>和’-w’选项一样，是全部内容匹配才可以。</p>
+<h3 id="控制输出内容"><a href="#控制输出内容" class="headerlink" title="控制输出内容"></a>控制输出内容</h3><blockquote>
+<p>-c # –count</p>
+</blockquote>
+<p>输出匹配到行的数量，与’-v’选项可以表示未匹配到行的数量</p>
+<blockquote>
+<p>–color[=WHEN]</p>
+</blockquote>
+<p>输出颜色，WHEN有never, always, auto,一般我们设置了auto选项</p>
+<blockquote>
+<p>-L # –files-without-match</p>
+</blockquote>
+<p>输出未能匹配到的文件名列表</p>
+<blockquote>
+<p>-l # –files-with-matches</p>
+</blockquote>
+<p>输出匹配到的文件名列表</p>
+<blockquote>
+<p>-m NUM # –max-count=NUM</p>
+</blockquote>
+<p>这个一般配合脚本执行，使用这个选项可以在当前匹配到NUM个行时停止执行读取搜索文件。<br>不过这个停止时暂时的，并且grep会标记这次索引的最后一次匹配行的位置，使得调用两一个进程可以从此处恢复并继续向下搜索。</p>
+<pre><code>while grep -m 1 PATTERN
+do
+echo xxxx
+done &lt; FILE</code></pre><blockquote>
+<p>-o # –only-matching</p>
+</blockquote>
+<p>输出匹配到的字符串，而不是输出整行内容。调式与练习时候还是不错的。</p>
+<blockquote>
+<p>-s # –no-messages</p>
+</blockquote>
+<p>禁止输出因文件不存在或文件没有读权限而产生的错误信息.</p>
+<p>注意在POSIX与GNU规范中，有所不同，可以在grep中添加重定向到/dev/null设备节点上。</p>
+<h3 id="控制输出行的前缀与上下文"><a href="#控制输出行的前缀与上下文" class="headerlink" title="控制输出行的前缀与上下文"></a>控制输出行的前缀与上下文</h3><blockquote>
+<p>-H # –with-filename</p>
+</blockquote>
+<p>输出匹配的文件名字，在搜索多个文件的时候，这个选项时默认的<br>一般我们也打开这个选项，毕竟在终端中执行命令是为了定位内容位置</p>
+<blockquote>
+<p>-h # –no-filename</p>
+</blockquote>
+<p>禁止输出文件名称，这在搜索一个文件的时候时默认的</p>
+<blockquote>
+<p>-Z # –null</p>
+</blockquote>
+<p>在输出文件名时，使用’\0’放在文件名字的后面，进而替代原本使用的字符，如’\n’或者’:’</p>
+<ol>
+<li>grep -lZ 输出每个文件都在同一行，而不是分行</li>
+<li>grep -HZ 输出文件名字后没有冒号</li>
+</ol>
+<blockquote>
+<p>-A NUM /-B NUM / -C NUM #(–after-context=NUM) | (–before-context=NUM) | (–context=NUM)</p>
+</blockquote>
+<p>附加输出在匹配到的行的后面，前面，或者前后的NUM行的内容</p>
+<blockquote>
+<p>z # –null-data</p>
+</blockquote>
+<p>以’\0’最为输入行的分隔符，而不再以换行符分割，为grep提供跨行匹配的能力.</p>
+<h3 id="文件和目录的选择"><a href="#文件和目录的选择" class="headerlink" title="文件和目录的选择"></a>文件和目录的选择</h3><blockquote>
+<p>–exclude=GLOB</p>
+</blockquote>
+<p>忽略文件名称（不加目录也叫basename）能被GLOB匹配到的文件。GLOB通配符包括：”*“、”?”和”[…]”。</p>
+<blockquote>
+<p>–exclude-from=FILE</p>
+</blockquote>
+<p>从FILE中读取exclude的排除规则。</p>
+<blockquote>
+<p>–exclude-dir=DIR</p>
+</blockquote>
+<p>筛选出不进行递归搜索的目录，使用DIR进行匹配。</p>
+<blockquote>
+<p>–include=GLOB</p>
+</blockquote>
+<p>只搜索basename匹配GLOB的文件中的内容</p>
+<blockquote>
+<p>-r # -R –recursive</p>
+</blockquote>
+<p>递归搜索给定的目录</p>
+<h3 id="grep的后端引擎"><a href="#grep的后端引擎" class="headerlink" title="grep的后端引擎"></a>grep的后端引擎</h3><p>有4种grep程序分别支持不同的搜索引擎，使用下面4个选项可以选择使用哪种grep程序。</p>
+<blockquote>
+<p>-G # –basic-regexp</p>
+</blockquote>
+<p>使用基础正则表达式引擎解析PATTERN，因此只支持基础正则表达式(BRE)。<br>这是默认grep使用的后端。</p>
+<blockquote>
+<p>-E #–extended-regexp</p>
+</blockquote>
+<p>使用扩展正则表达式引擎解析PATTERN，因此支持扩展正则表达式(ERE)。(‘-E’是POSIX指定的选项。)</p>
+<blockquote>
+<p>-F #–fixed-strings</p>
+</blockquote>
+<p>不识别正则表达式，而是使用字符的字面意义解析PATTERN，因此只支持固定字符串的精确匹配。(‘-F’是POSIX指定的选项。)</p>
+<blockquote>
+<p>-P #–perl-regexp</p>
+</blockquote>
+<p>使用perl正则表达式引擎解析PATTERN，因此支持Perl正则表达式。但该程序正处于研究测试阶段，因此会给出一个警告。</p>
+<p>此外，”grep -E”和”grep -F”可分别简写为egrep和fgrep。但这两个简写程序是传统写法，已被废弃，虽仍支持，但只是为了兼容老版本程序。</p>
+<p>还有zgrep和pgrep，但它们不是grep家族的程序，zgrep是gzip提供，pgrep用于查看进程名和pid的映射关系</p>
+<h3 id="grep-支持的正则表达式"><a href="#grep-支持的正则表达式" class="headerlink" title="grep 支持的正则表达式"></a>grep 支持的正则表达式</h3><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/11/20/VimNote/ideas/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/11/18/VimNote/vim/vim-grep/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

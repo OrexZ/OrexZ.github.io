@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>文章样例模板 | OrexZ</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="文章样例模板"/>
+  <meta property="og:site_name" content="OrexZ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'true']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">文章样例模板</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2020-01-01</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <p>本模板参考<strong>泰晓科技</strong>文档模板与约定，使用<strong>Hexo</strong>渲染引擎生成规范式文档。</p>
+<p>具体格式内容，需要查看<strong>本文源码</strong>，由于该系列属于个人笔记，所以并没有安排自动生成模板格式草稿。</p>
+<p>不过各文章的编辑基本参照该模板格式书写。</p>
+<p>这里分别就几个方面展开介绍：</p>
+<h2 id="文章分类"><a href="#文章分类" class="headerlink" title="文章分类"></a>文章分类</h2><p>文章目前记录随笔和系列撰稿，当前分类按照作者自己本人的意愿划分。</p>
+<h2 id="内容列表"><a href="#内容列表" class="headerlink" title="内容列表"></a>内容列表</h2><ol>
+<li><p>数字列表，条目 1</p>
+<ul>
+<li>普通列表，条目 1</li>
+<li>普通列表，条目 2</li>
+</ul>
+</li>
+<li><p>数字列表，条目 2</p>
+</li>
+</ol>
+<h2 id="代码缩进"><a href="#代码缩进" class="headerlink" title="代码缩进"></a>代码缩进</h2><p>代码在正文下，用 4 个空格缩进：</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+   printf(&apos;Hello, World!&apos;);
+}</code></pre><p><em>注</em>: 如果要跟列表一起缩进显示，得添加相应空格。</p>
+<p>当然，如果你使用类似<strong>三个反引号</strong>的形式标注代码也没有限制，一般在<strong>emacs</strong>中可以得到很好的支持,类似这样:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">io</span>.<span class="built_in">write</span>(<span class="string">"so..."</span>, <span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>在 hexo 中建议使用<strong>三个反引号</strong>的形式，可以使用语法高亮，这是Hexo引擎使然。</p>
+<h2 id="正文内内嵌代码"><a href="#正文内内嵌代码" class="headerlink" title="正文内内嵌代码"></a>正文内内嵌代码</h2><p>如果正文中包含了命令、接口、代码片段、变量等属于代码的部分时，请用 <code>括起来，例如：</code>grep Free /proc/meminfo`，用法为：</p>
+<pre><code>`grep Free /proc/meminfo`</code></pre><h2 id="中英文以及数字混排"><a href="#中英文以及数字混排" class="headerlink" title="中英文以及数字混排"></a>中英文以及数字混排</h2><p>当中 English 文以及中文、数字混排时，记得在 English 和数字，例如 1 2 3 4 周边添加空格，进而确保可阅读性。</p>
+<h2 id="表格用法"><a href="#表格用法" class="headerlink" title="表格用法"></a>表格用法</h2><table>
+<thead>
+<tr>
+<th>标题 1</th>
+<th align="right">标题 2</th>
+<th align="center">标题 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>左对齐</td>
+<td align="right">右对齐</td>
+<td align="center">居中对齐</td>
+</tr>
+</tbody></table>
+<h2 id="在正文中嵌入图片"><a href="#在正文中嵌入图片" class="headerlink" title="在正文中嵌入图片"></a>在正文中嵌入图片</h2><p>Markdown 基本语法如下：</p>
+<p><img src="https://getspet.com/wp-content/uploads/2018/04/Scottish-Fold-beautiful-cats.jpg" alt="图片名" title="图片内容提示，可选"></p>
+<p><em>注</em>：如果想规范图片大小，想增加额外的特性，可以用 html 的 <code>&lt;img&gt;</code> 标记。</p>
+<h3 id="Hexo-本地图片显示"><a href="#Hexo-本地图片显示" class="headerlink" title="Hexo 本地图片显示"></a>Hexo 本地图片显示</h3><p>在Hexo的Markdown使用的时候需要注意一些细节，这可能和标准的Markdown有所不同。</p>
+<p><a href="https://www.xilixili.net/2019/03/26/hexo-markdown-use-images/" target="_blank" rel="noopener">Hexo本地图片显示问题解决方案</a></p>
+<p>所以，一般用法是：</p>
+<p><img src="/VimNote/images/cats.jpg" alt="我们家的偷情的俩货..."></p>
+<h3 id="网络图片显示"><a href="#网络图片显示" class="headerlink" title="网络图片显示"></a>网络图片显示</h3><p>这没有什么特别的，按照Markdown的用法来:</p>
+<p><img src="https://cn.bing.com/th?id=OIP.GTbdLeO3kutK1Uaw2lOiKgHaFu&pid=Api&rs=1" alt="别人家的猫叔"></p>
+<h2 id="链接以及各类内容混排"><a href="#链接以及各类内容混排" class="headerlink" title="链接以及各类内容混排"></a>链接以及各类内容混排</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><p><a href="http://tinylab.org" target="_blank" rel="noopener">链接用法一</a></p>
+<p>在列表后面放入脚本，为了确保跟列表一起缩进，需要额外增加两个空格：</p>
+<pre><code>#!/bin/bash
+echo &apos;Hello, World.&apos;</code></pre></li>
+</ul>
+<ul>
+<li><p><a href="http://tinylab.org" target="_blank" rel="noopener">另外一种链接用法</a></p>
+<p>在列表后面再嵌入子列表，包括数字列表和非数字列表：</p>
+<ul>
+<li>Another list<ul>
+<li>Another list<ol>
+<li>Third list</li>
+<li>Third list</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>第三种链接用法：<a href="http://tinylab.org" target="_blank" rel="noopener">http://tinylab.org</a></li>
+</ul>
+<h3 id="更复杂的列表用法"><a href="#更复杂的列表用法" class="headerlink" title="更复杂的列表用法"></a>更复杂的列表用法</h3><ol>
+<li><p>表项 1</p>
+<p> 这里再嵌入代码：</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main() { return 0; }</code></pre></li>
+<li><p>表项 2</p>
+<p> 这里嵌入图片：</p>
+<p> <img src="https://halopets.com/sites/default/files/2017-07/hp_caticon_kitten_adobe_84509847_crop.jpg" alt="图片名" title="图片内容描述信息"></p>
+</li>
+<li><p>表项 3</p>
+<p> 普通正文</p>
+</li>
+</ol>
+<p><em>注</em>：数字列表跟普通列表有一个差别是，数字列表后面如果要加正文自动缩进，得增加 4 个空格，而普通列表只需要两个。估计是 Markdown 解释器的问题，请尽量遵循这个约定吧。</p>
+<h2 id="正文引用"><a href="#正文引用" class="headerlink" title="正文引用"></a>正文引用</h2><p>如果要引用第三方的信息，可以这么做：</p>
+<blockquote>
+<p>这里是来自第三方的信息，信息内容可以用普通的 Markdown 语法来标记<a href="http://tinylab.org" target="_blank" rel="noopener">链接</a>、<strong>加粗</strong>、<em>斜体</em>、<code>命令</code>等等。</p>
+</blockquote>
+<h2 id="Markdown-入门资料"><a href="#Markdown-入门资料" class="headerlink" title="Markdown 入门资料"></a>Markdown 入门资料</h2><p><a href="https://blog.csdn.net/zhuzhuyule/article/details/58347687" target="_blank" rel="noopener">简单如何，动手实践下</a></p>
+<p><a href="https://sspai.com/post/37273" target="_blank" rel="noopener">Markdown 的一些罕见用法</a></p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2020/01/01/VimNote/linux-tools/xargs/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
