@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>使用VIM自动填充markdown的头部信息</title>
+      <link href="/2020/01/11/VimNote/vim/vim-auto-fill-markdown-header/"/>
+      <url>/2020/01/11/VimNote/vim/vim-auto-fill-markdown-header/</url>
+      
+        <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>需要完成的主要任务列表如下</p><h2 id="开发纪要"><a href="#开发纪要" class="headerlink" title="开发纪要"></a>开发纪要</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> vim </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>VimNote/vim/vim-built-in-tips</title>
+      <link href="/2020/01/11/VimNote/vim/vim-built-in-tips/"/>
+      <url>/2020/01/11/VimNote/vim/vim-built-in-tips/</url>
+      
+        <content type="html"><![CDATA[<h1 id="VIM内置功能的使用技巧"><a href="#VIM内置功能的使用技巧" class="headerlink" title="VIM内置功能的使用技巧"></a>VIM内置功能的使用技巧</h1><p>很多开发者都狂热于VIM的可定制话，并迷失在VIM众多插件的海洋中，无法自拔。</p><p>其实VIM作为一个好用的文本编辑器，已经内置了很多好用的功能，一起看看吧。</p><p>使用内置技巧有一个好处，那就是你可以在不同的机器上有相同的动作，<br>别人看的眼花缭乱的时候，你可以牛逼轰轰的拂袖而去。</p><h2 id="如何手动reload你的文件到内存？"><a href="#如何手动reload你的文件到内存？" class="headerlink" title="如何手动reload你的文件到内存？"></a>如何手动reload你的文件到内存？</h2><p>有时候我们对一个文件可能有多个buffer与之对应，并且可能在不同的时候进行修改，<br>这很可能引起同步问题，那使用VIm的时候如何使用手动更新当前文件的内存映射呢？</p><pre><code>:e</code></pre><p>就这么简单的一句话。</p><p>如果你不想要存储你当时的所有修改，请使用下面的指令将文件的内存映射恢复到原来(或者其他地方已经修改后的版本)</p><pre><code>:e!</code></pre><h2 id="如何删除文件中的’-M’符号？"><a href="#如何删除文件中的’-M’符号？" class="headerlink" title="如何删除文件中的’^M’符号？"></a>如何删除文件中的’^M’符号？</h2><p>其实这个是一个dos版本的换行符，一般是windows相关编辑器引入的。</p><p>不过在VIM中可以手动删除掉。</p><ol><li><p>删除掉指定位置</p><p> :%s/^M//g</p></li></ol><p>‘^M’是在类插入模式下，使用<C-v>+<CR>打印出来的。</p><p>NOTE: <C-V>可以打印不可见字符。</p><ol start="2"><li><p>格式化整个文件，并保存</p><p> :set ff=unix<br> :w<br> :set ff=dos<br> :w</p></li></ol><h2 id="如何利用vim保存文件为不同格式？"><a href="#如何利用vim保存文件为不同格式？" class="headerlink" title="如何利用vim保存文件为不同格式？"></a>如何利用vim保存文件为不同格式？</h2><p>使用vim编辑器，需要知道的一点是，如何格式化自己的文件</p><p>其实很简单，这里介绍不改变vim配置的情况下，修改当前文件的编码格式并保存</p><pre><code>1. &gt; set fileencoding=utf-8 #修改当前文件的编码格式2. &gt; wq</code></pre><p>如何要配置全局生效的文件，并打算去除编码格式带来的乱码，可以这样</p><pre><code># in vimrcset fileencoding=utf-8,gbk,...</code></pre><p>还有一些小技巧，可以参考<a href="https://blog.csdn.net/mergerly/article/details/50899575" target="_blank" rel="noopener">这里</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何将本仓库集成到hexo</title>
       <link href="/2020/01/01/VimNote/hexo_integrate/"/>
       <url>/2020/01/01/VimNote/hexo_integrate/</url>
@@ -146,11 +178,11 @@
     
     
     <entry>
-      <title>VimNote/fzf/fzf_install</title>
-      <link href="/2019/12/28/VimNote/fzf/fzf_install/"/>
-      <url>/2019/12/28/VimNote/fzf/fzf_install/</url>
+      <title>VimNote/linux-tools/opengrok</title>
+      <link href="/2019/12/28/VimNote/linux-tools/opengrok/"/>
+      <url>/2019/12/28/VimNote/linux-tools/opengrok/</url>
       
-        <content type="html"><![CDATA[<h2 id="如何安装FZF"><a href="#如何安装FZF" class="headerlink" title="如何安装FZF"></a>如何安装FZF</h2><p>如果你想要方便省事，可以这样来</p><pre><code>$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzfCloning into &apos;/home/rex/.fzf&apos;...remote: Enumerating objects: 95, done.remote: Counting objects: 100% (95/95), done.remote: Compressing objects: 100% (88/88), done.remote: Total 95 (delta 4), reused 22 (delta 2), pack-reused 0Unpacking objects: 100% (95/95), done.$ ./.fzf/installDownloading bin/fzf ...% Total    % Received % Xferd  Average Speed   Time    Time     Time  CurrentDload  Upload   Total   Spent    Left  Speed100   616    0   616    0     0    550      0 --:--:--  0:00:01 --:--:--   550100 1134k  100 1134k    0     0   277k      0  0:00:04  0:00:04 --:--:--  508k- Checking fzf executable ... 0.20.0Do you want to enable fuzzy auto-completion? ([y]/n) yDo you want to enable key bindings? ([y]/n) yGenerate /home/rex/.fzf.bash ... OKDo you want to update your shell configuration files? ([y]/n) yUpdate /home/rex/.bashrc:- [ -f ~/.fzf.bash ] &amp;&amp; source ~/.fzf.bash + AddedFinished. Restart your shell or reload config file.source ~/.bashrc  # bashUse uninstall script to remove fzf.For more information, see: https://github.com/junegunn/fzf</code></pre><p>当然有很多的方法可以安装，具体可以查看官方的安装<a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">章节</a>。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="OpenGrok-安装和使用"><a href="#OpenGrok-安装和使用" class="headerlink" title="OpenGrok 安装和使用"></a>OpenGrok 安装和使用</h2><p><a href="https://zhuanlan.zhihu.com/p/32568717" target="_blank" rel="noopener">这里</a>有同学已经将OpenGrok环境集成到了docker中，使用起来也比较简单</p><p>首先，自己下载docker image到本地，这里需要配置一些本地工具</p><p>依赖的工具：JAVA （这不用多说了，安装个JDK1.8就可以满足）<br>一般的包管理器都可以直接安装，可以就不再细述</p><p>安装脚本为：</p><pre><code>docker run -it -d --name &lt;CONTAINER NAME&gt; \-p &lt;EXTERNAL PORT&gt;:8080 \-v &lt;LINUX JDK HOME&gt;:/usr/lib/jvm \-v &lt;OPENGROK DATA FOLDER&gt;:/var/opengrok:delegated \-w /app krazakee/opengrok</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;EXTERNAL PORT&gt;: 主机端口，由docker中端口8080映射过来，并给外部使用的</span><br><span class="line">&lt;LINUX JDK HOME&gt;: JDK的HOME目录，一般在&#x2F;usr&#x2F;lib&#x2F;下面，可以使用locate定位</span><br><span class="line">&lt;OPENGROK DATA FOLDER&gt;: 索引文件和项目代码存放的位置</span><br></pre></td></tr></table></figure><p>创建和更新索引</p><p>这也是使用这个工具的目的，这个可以使用这位同学已经做好的脚本来完成</p><pre><code>docker exec &lt;CONTAINER NAME&gt; bash -c &quot;/reindex.sh&quot;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;CONTAINER NAME&gt; : 就是你之前run的时候分配的名字，当然ID也是可以的</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
@@ -159,11 +191,11 @@
     
     
     <entry>
-      <title>VimNote/linux-tools/opengrok</title>
-      <link href="/2019/12/28/VimNote/linux-tools/opengrok/"/>
-      <url>/2019/12/28/VimNote/linux-tools/opengrok/</url>
+      <title>VimNote/fzf/fzf_install</title>
+      <link href="/2019/12/28/VimNote/fzf/fzf_install/"/>
+      <url>/2019/12/28/VimNote/fzf/fzf_install/</url>
       
-        <content type="html"><![CDATA[<h2 id="OpenGrok-安装和使用"><a href="#OpenGrok-安装和使用" class="headerlink" title="OpenGrok 安装和使用"></a>OpenGrok 安装和使用</h2><p><a href="https://zhuanlan.zhihu.com/p/32568717" target="_blank" rel="noopener">这里</a>有同学已经将OpenGrok环境集成到了docker中，使用起来也比较简单</p><p>首先，自己下载docker image到本地，这里需要配置一些本地工具</p><p>依赖的工具：JAVA （这不用多说了，安装个JDK1.8就可以满足）<br>一般的包管理器都可以直接安装，可以就不再细述</p><p>安装脚本为：</p><pre><code>docker run -it -d --name &lt;CONTAINER NAME&gt; \-p &lt;EXTERNAL PORT&gt;:8080 \-v &lt;LINUX JDK HOME&gt;:/usr/lib/jvm \-v &lt;OPENGROK DATA FOLDER&gt;:/var/opengrok:delegated \-w /app krazakee/opengrok</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;EXTERNAL PORT&gt;: 主机端口，由docker中端口8080映射过来，并给外部使用的</span><br><span class="line">&lt;LINUX JDK HOME&gt;: JDK的HOME目录，一般在&#x2F;usr&#x2F;lib&#x2F;下面，可以使用locate定位</span><br><span class="line">&lt;OPENGROK DATA FOLDER&gt;: 索引文件和项目代码存放的位置</span><br></pre></td></tr></table></figure><p>创建和更新索引</p><p>这也是使用这个工具的目的，这个可以使用这位同学已经做好的脚本来完成</p><pre><code>docker exec &lt;CONTAINER NAME&gt; bash -c &quot;/reindex.sh&quot;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;CONTAINER NAME&gt; : 就是你之前run的时候分配的名字，当然ID也是可以的</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h2 id="如何安装FZF"><a href="#如何安装FZF" class="headerlink" title="如何安装FZF"></a>如何安装FZF</h2><p>如果你想要方便省事，可以这样来</p><pre><code>$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzfCloning into &apos;/home/rex/.fzf&apos;...remote: Enumerating objects: 95, done.remote: Counting objects: 100% (95/95), done.remote: Compressing objects: 100% (88/88), done.remote: Total 95 (delta 4), reused 22 (delta 2), pack-reused 0Unpacking objects: 100% (95/95), done.$ ./.fzf/installDownloading bin/fzf ...% Total    % Received % Xferd  Average Speed   Time    Time     Time  CurrentDload  Upload   Total   Spent    Left  Speed100   616    0   616    0     0    550      0 --:--:--  0:00:01 --:--:--   550100 1134k  100 1134k    0     0   277k      0  0:00:04  0:00:04 --:--:--  508k- Checking fzf executable ... 0.20.0Do you want to enable fuzzy auto-completion? ([y]/n) yDo you want to enable key bindings? ([y]/n) yGenerate /home/rex/.fzf.bash ... OKDo you want to update your shell configuration files? ([y]/n) yUpdate /home/rex/.bashrc:- [ -f ~/.fzf.bash ] &amp;&amp; source ~/.fzf.bash + AddedFinished. Restart your shell or reload config file.source ~/.bashrc  # bashUse uninstall script to remove fzf.For more information, see: https://github.com/junegunn/fzf</code></pre><p>当然有很多的方法可以安装，具体可以查看官方的安装<a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">章节</a>。</p>]]></content>
       
       
       
@@ -458,19 +490,6 @@
     
     
     <entry>
-      <title>VimNote/vim/vim-built-in-tips</title>
-      <link href="/2019/11/18/VimNote/vim/vim-built-in-tips/"/>
-      <url>/2019/11/18/VimNote/vim/vim-built-in-tips/</url>
-      
-        <content type="html"><![CDATA[<h1 id="VIM内置功能的使用技巧"><a href="#VIM内置功能的使用技巧" class="headerlink" title="VIM内置功能的使用技巧"></a>VIM内置功能的使用技巧</h1><p>很多开发者都狂热于VIM的可定制话，并迷失在VIM众多插件的海洋中，无法自拔。</p><p>其实VIM作为一个好用的文本编辑器，已经内置了很多好用的功能，一起看看吧。</p><p>使用内置技巧有一个好处，那就是你可以在不同的机器上有相同的动作，<br>别人看的眼花缭乱的时候，你可以牛逼轰轰的拂袖而去。</p><h2 id="如何手动reload你的文件到内存？"><a href="#如何手动reload你的文件到内存？" class="headerlink" title="如何手动reload你的文件到内存？"></a>如何手动reload你的文件到内存？</h2><p>有时候我们对一个文件可能有多个buffer与之对应，并且可能在不同的时候进行修改，<br>这很可能引起同步问题，那使用VIm的时候如何使用手动更新当前文件的内存映射呢？</p><pre><code>:e</code></pre><p>就这么简单的一句话。</p><p>如果你不想要存储你当时的所有修改，请使用下面的指令将文件的内存映射恢复到原来(或者其他地方已经修改后的版本)</p><pre><code>:e!</code></pre><h2 id="如何删除文件中的’-M’符号？"><a href="#如何删除文件中的’-M’符号？" class="headerlink" title="如何删除文件中的’^M’符号？"></a>如何删除文件中的’^M’符号？</h2><p>其实这个是一个dos版本的换行符，一般是windows相关编辑器引入的。</p><p>不过在VIM中可以手动删除掉。</p><ol><li><p>删除掉指定位置</p><p> :%s/^M//g</p></li></ol><p>‘^M’是在类插入模式下，使用<C-v>+<CR>打印出来的。</p><p>NOTE: <C-V>可以打印不可见字符。</p><ol start="2"><li><p>格式化整个文件，并保存</p><p> :set ff=unix<br> :w<br> :set ff=dos<br> :w</p></li></ol>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>VimNote/vim/vim-grep</title>
       <link href="/2019/11/18/VimNote/vim/vim-grep/"/>
       <url>/2019/11/18/VimNote/vim/vim-grep/</url>
@@ -723,6 +742,44 @@
             <tag> ssh </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>常用等宽字体</title>
+      <link href="/2019/01/10/VimNote/xterm/term_fonts/"/>
+      <url>/2019/01/10/VimNote/xterm/term_fonts/</url>
+      
+        <content type="html"><![CDATA[<h2 id="看看别人的推荐"><a href="#看看别人的推荐" class="headerlink" title="看看别人的推荐"></a>看看别人的推荐</h2><p>这里先搜罗一些用趣的链接，后续供查阅使用</p><ul><li><a href="https://www.cnblogs.com/hoyong/articles/7351478.html" target="_blank" rel="noopener">https://www.cnblogs.com/hoyong/articles/7351478.html</a> &lt; 异次元</li><li><a href="https://www.lulinux.com/archives/2727" target="_blank" rel="noopener">https://www.lulinux.com/archives/2727</a> &lt; 字体排行</li><li><a href="http://adobe-fonts.github.io/source-code-pro/" target="_blank" rel="noopener">http://adobe-fonts.github.io/source-code-pro/</a> &lt; source-code-pro样例</li><li><a href="https://github.com/adobe-fonts/source-code-pro" target="_blank" rel="noopener">https://github.com/adobe-fonts/source-code-pro</a> &lt; source-code-pro git repo</li><li><a href="https://zhuanlan.zhihu.com/p/20194623#" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20194623#</a>! &lt; 知乎等宽字体介绍文章</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> xterm </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>xterm配置入门</title>
+      <link href="/2019/01/10/VimNote/xterm/xterm-conf/"/>
+      <url>/2019/01/10/VimNote/xterm/xterm-conf/</url>
+      
+        <content type="html"><![CDATA[<p>大家好，我是<code>红桃C</code>。<br>这篇文章主要讲述的是xterm相关配置，希望能给你带来帮助。</p><h2 id="xterm配置文件的位置"><a href="#xterm配置文件的位置" class="headerlink" title="xterm配置文件的位置"></a>xterm配置文件的位置</h2><p>一般配置xterm使用$HOME/.Xresources，当然$HOME/.Xdefaults也可以，<br>不过最好使用官方推荐的$HOME/.Xresources.</p><h2 id="如何加载xterm配置文件"><a href="#如何加载xterm配置文件" class="headerlink" title="如何加载xterm配置文件"></a>如何加载xterm配置文件</h2><p>对于xterm的配置文件，你可以按照自己的要求来规划，<br>这得益于xinitrc和xrdb等这样的Xwindows相关的配置和工具</p><p>如何配置最简单？分三个步骤</p><ol><li>建立一个$HOME/.xinitrc文件，在Xwindows启动的时候加载你的配置脚本</li><li>在配置文件中写入:<br> [[ -f ~/.Xresources ]] &amp;&amp; xrdb -merge -I$HOME ~/.Xresources</li><li>最后定制你的.Xresources文件即可</li></ol><p>PS: 有些同学喜欢这样来定义结构</p><pre><code>&gt; ~/.Xresources#include &quot;.Xresources.d/xterm&quot;#include &quot;.Xresources.d/rxvt-unicode&quot;#include &quot;.Xresources.d/fonts&quot;#include &quot;.Xresources.d/xscreensaver&quot;</code></pre><p>这完全看你个人的喜好，这里不再赘述</p><h2 id="xrdb-常用指令"><a href="#xrdb-常用指令" class="headerlink" title="xrdb 常用指令"></a>xrdb 常用指令</h2><p>加载资源文件</p><pre><code>xrdb -load $HOME/.Xresources</code></pre><p>添加资源（只是添加设置，保留以往的部分没有覆盖的设置）</p><pre><code>xrdb -merge $HOME/.Xresources</code></pre><p>查看当前生效的设置</p><pre><code>xrdb -query -all</code></pre><h2 id="如何配置中文输入法"><a href="#如何配置中文输入法" class="headerlink" title="如何配置中文输入法"></a>如何配置中文输入法</h2><p>在xterm中配置中文输入法并不难，不过你要知道自己使用的是什么输入法引擎。</p><p>比较流行的有：ibus，fictx等</p><p>搜狗输入狗需要fictx引擎的支持，在Centos7下面支持太麻烦，所以笔者直接使用<br>ibus引擎配合googlepingyin来完成中文的书写</p><p>配置方式就是一行，完美开启中文输入</p><pre><code>!input methodxterm*inputMethod:ibus</code></pre><h2 id="如何安装字体"><a href="#如何安装字体" class="headerlink" title="如何安装字体"></a>如何安装字体</h2><p>字体文件有很多种类，下文会根据需要更新不同字体的安装。</p><p>关于终端字体与显示器的匹配最佳方案，<a href="https://blog.csdn.net/diy534/article/details/7327213" target="_blank" rel="noopener">这里</a>给出了比较好的解释。</p><h3 id="安装ttf字体"><a href="#安装ttf字体" class="headerlink" title="安装ttf字体"></a>安装ttf字体</h3><p>由于不同的linux发行套件可能有不同的字体引擎，这里以Centos7为例</p><p>其实步骤很简单</p><ol><li>知道自己需要什么字体，然后下载它（这里是ttf格式）</li><li>使用字体引擎的相关配置文件，一般配置文件的路径为<ul><li>/usr/share/fonts</li><li>/usr/local/share/fonts</li><li>/home/$USER/.fonts</li><li>/home/$USER/.local/fonts</li><li>随便找一个适合你的位置然后添加你的字体文件</li></ul></li><li>sudo fc-cache -fv $where_your_fonts_path，这里输出的log，你会看到new了几个字体</li><li>fc-list | grep <yourFonts> 查看字体列表，验证是否添加成功</li></ol><h2 id="如何配置字体"><a href="#如何配置字体" class="headerlink" title="如何配置字体"></a>如何配置字体</h2><p>在xterm中，配置字体很简单，如下这样</p><pre><code>! English fontxterm*faceName: DejaVu Sans Mono:antialias=True:pixelsize=24! Chinese fontxterm*faceNameDoublesize:YouYuan:pixelsize=24</code></pre><h2 id="如何在VIM中调试颜色表？"><a href="#如何在VIM中调试颜色表？" class="headerlink" title="如何在VIM中调试颜色表？"></a>如何在VIM中调试颜色表？</h2><p>有一款叫做<a href="https://vimawesome.com/plugin/xterm-color-table-vim" target="_blank" rel="noopener">xterm-color-table.vim</a>的插件可以满足你的需求，自己尝试一样吧:)</p><h2 id="简单的xterm配置方案"><a href="#简单的xterm配置方案" class="headerlink" title="简单的xterm配置方案"></a>简单的xterm配置方案</h2><p>这里提供一个本人自己总结的小方案，获得步骤如下</p><ol><li>git clone <a href="mailto:git@github.com">git@github.com</a>:OrexZ/VimNote.git $HOME/.ovim</li><li>ln -s $HOME/.ovim $HOME/.vim</li><li>ln -s $HOME/.vim/xterm/Xresources $HOME/.Xresources</li><li>ln -s $HOME/.vim/xterm/xinitrc    $HOME/.xinitrc</li></ol><h2 id="不错的链接"><a href="#不错的链接" class="headerlink" title="不错的链接"></a>不错的链接</h2><ul><li><a href="https://www.cnblogs.com/taosim/articles/3269541.html" target="_blank" rel="noopener">https://www.cnblogs.com/taosim/articles/3269541.html</a></li><li><a href="https://blog.csdn.net/u013181648/article/details/64501569" target="_blank" rel="noopener">https://blog.csdn.net/u013181648/article/details/64501569</a></li><li><a href="http://www.kbase101.com/question/19486.html" target="_blank" rel="noopener">http://www.kbase101.com/question/19486.html</a></li><li><a href="https://invisible-island.net/xterm/manpage/xterm-contents.html" target="_blank" rel="noopener">https://invisible-island.net/xterm/manpage/xterm-contents.html</a> &lt; xterm常用函数解释</li><li><a href="https://unix.stackexchange.com/questions/109509/how-to-search-xterm-console-history" target="_blank" rel="noopener">https://unix.stackexchange.com/questions/109509/how-to-search-xterm-console-history</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> xterm </category>
+          
+      </categories>
+      
       
     </entry>
     

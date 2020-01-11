@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>xterm配置入门 | OrexZ</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="xterm配置入门"/>
+  <meta property="og:site_name" content="OrexZ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'true']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">OrexZ</a><span class="split"></span><span class="title">xterm配置入门</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-01-10</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+
+  
+  <div class="col-xs-12 col-sm-9 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <p>大家好，我是<code>红桃C</code>。<br>这篇文章主要讲述的是xterm相关配置，希望能给你带来帮助。</p>
+<h2 id="xterm配置文件的位置"><a href="#xterm配置文件的位置" class="headerlink" title="xterm配置文件的位置"></a>xterm配置文件的位置</h2><p>一般配置xterm使用$HOME/.Xresources，当然$HOME/.Xdefaults也可以，<br>不过最好使用官方推荐的$HOME/.Xresources.</p>
+<h2 id="如何加载xterm配置文件"><a href="#如何加载xterm配置文件" class="headerlink" title="如何加载xterm配置文件"></a>如何加载xterm配置文件</h2><p>对于xterm的配置文件，你可以按照自己的要求来规划，<br>这得益于xinitrc和xrdb等这样的Xwindows相关的配置和工具</p>
+<p>如何配置最简单？分三个步骤</p>
+<ol>
+<li>建立一个$HOME/.xinitrc文件，在Xwindows启动的时候加载你的配置脚本</li>
+<li>在配置文件中写入:<br> [[ -f ~/.Xresources ]] &amp;&amp; xrdb -merge -I$HOME ~/.Xresources</li>
+<li>最后定制你的.Xresources文件即可</li>
+</ol>
+<p>PS: 有些同学喜欢这样来定义结构</p>
+<pre><code>&gt; ~/.Xresources
+
+#include &quot;.Xresources.d/xterm&quot;
+#include &quot;.Xresources.d/rxvt-unicode&quot;
+#include &quot;.Xresources.d/fonts&quot;
+#include &quot;.Xresources.d/xscreensaver&quot;</code></pre><p>这完全看你个人的喜好，这里不再赘述</p>
+<h2 id="xrdb-常用指令"><a href="#xrdb-常用指令" class="headerlink" title="xrdb 常用指令"></a>xrdb 常用指令</h2><p>加载资源文件</p>
+<pre><code>xrdb -load $HOME/.Xresources</code></pre><p>添加资源（只是添加设置，保留以往的部分没有覆盖的设置）</p>
+<pre><code>xrdb -merge $HOME/.Xresources</code></pre><p>查看当前生效的设置</p>
+<pre><code>xrdb -query -all</code></pre><h2 id="如何配置中文输入法"><a href="#如何配置中文输入法" class="headerlink" title="如何配置中文输入法"></a>如何配置中文输入法</h2><p>在xterm中配置中文输入法并不难，不过你要知道自己使用的是什么输入法引擎。</p>
+<p>比较流行的有：ibus，fictx等</p>
+<p>搜狗输入狗需要fictx引擎的支持，在Centos7下面支持太麻烦，所以笔者直接使用<br>ibus引擎配合googlepingyin来完成中文的书写</p>
+<p>配置方式就是一行，完美开启中文输入</p>
+<pre><code>!input method
+xterm*inputMethod:ibus</code></pre><h2 id="如何安装字体"><a href="#如何安装字体" class="headerlink" title="如何安装字体"></a>如何安装字体</h2><p>字体文件有很多种类，下文会根据需要更新不同字体的安装。</p>
+<p>关于终端字体与显示器的匹配最佳方案，<a href="https://blog.csdn.net/diy534/article/details/7327213" target="_blank" rel="noopener">这里</a>给出了比较好的解释。</p>
+<h3 id="安装ttf字体"><a href="#安装ttf字体" class="headerlink" title="安装ttf字体"></a>安装ttf字体</h3><p>由于不同的linux发行套件可能有不同的字体引擎，这里以Centos7为例</p>
+<p>其实步骤很简单</p>
+<ol>
+<li>知道自己需要什么字体，然后下载它（这里是ttf格式）</li>
+<li>使用字体引擎的相关配置文件，一般配置文件的路径为<ul>
+<li>/usr/share/fonts</li>
+<li>/usr/local/share/fonts</li>
+<li>/home/$USER/.fonts</li>
+<li>/home/$USER/.local/fonts</li>
+<li>随便找一个适合你的位置然后添加你的字体文件</li>
+</ul>
+</li>
+<li>sudo fc-cache -fv $where_your_fonts_path，这里输出的log，你会看到new了几个字体</li>
+<li>fc-list | grep <yourFonts> 查看字体列表，验证是否添加成功</li>
+</ol>
+<h2 id="如何配置字体"><a href="#如何配置字体" class="headerlink" title="如何配置字体"></a>如何配置字体</h2><p>在xterm中，配置字体很简单，如下这样</p>
+<pre><code>! English font
+xterm*faceName: DejaVu Sans Mono:antialias=True:pixelsize=24
+! Chinese font
+xterm*faceNameDoublesize:YouYuan:pixelsize=24</code></pre><h2 id="如何在VIM中调试颜色表？"><a href="#如何在VIM中调试颜色表？" class="headerlink" title="如何在VIM中调试颜色表？"></a>如何在VIM中调试颜色表？</h2><p>有一款叫做<a href="https://vimawesome.com/plugin/xterm-color-table-vim" target="_blank" rel="noopener">xterm-color-table.vim</a>的插件可以满足你的需求，自己尝试一样吧:)</p>
+<h2 id="简单的xterm配置方案"><a href="#简单的xterm配置方案" class="headerlink" title="简单的xterm配置方案"></a>简单的xterm配置方案</h2><p>这里提供一个本人自己总结的小方案，获得步骤如下</p>
+<ol>
+<li>git clone <a href="mailto:git@github.com">git@github.com</a>:OrexZ/VimNote.git $HOME/.ovim</li>
+<li>ln -s $HOME/.ovim $HOME/.vim</li>
+<li>ln -s $HOME/.vim/xterm/Xresources $HOME/.Xresources</li>
+<li>ln -s $HOME/.vim/xterm/xinitrc    $HOME/.xinitrc</li>
+</ol>
+<h2 id="不错的链接"><a href="#不错的链接" class="headerlink" title="不错的链接"></a>不错的链接</h2><ul>
+<li><a href="https://www.cnblogs.com/taosim/articles/3269541.html" target="_blank" rel="noopener">https://www.cnblogs.com/taosim/articles/3269541.html</a></li>
+<li><a href="https://blog.csdn.net/u013181648/article/details/64501569" target="_blank" rel="noopener">https://blog.csdn.net/u013181648/article/details/64501569</a></li>
+<li><a href="http://www.kbase101.com/question/19486.html" target="_blank" rel="noopener">http://www.kbase101.com/question/19486.html</a></li>
+<li><a href="https://invisible-island.net/xterm/manpage/xterm-contents.html" target="_blank" rel="noopener">https://invisible-island.net/xterm/manpage/xterm-contents.html</a> &lt; xterm常用函数解释</li>
+<li><a href="https://unix.stackexchange.com/questions/109509/how-to-search-xterm-console-history" target="_blank" rel="noopener">https://unix.stackexchange.com/questions/109509/how-to-search-xterm-console-history</a></li>
+</ul>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/01/10/VimNote/xterm/term_fonts/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
