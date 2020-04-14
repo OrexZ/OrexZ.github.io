@@ -2,8 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
   
-  <title>OrexZ</title>
+  <title>Rex&#39;s BLOG</title>
   <meta name="author" content="Rex">
   
   <meta name="description" content="embedded linux os article">
@@ -12,14 +15,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="OrexZ"/>
+  <meta property="og:site_name" content="Rex&#39;s BLOG"/>
 
   
     <meta property="og:image" content=""/>
   
 
-  
-    <link rel="alternative" href="/atom.xml" title="OrexZ" type="application/atom+xml">
   
   
     <link href="/favicon.png" rel="icon">
@@ -28,942 +29,541 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
-  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
   <script src="/js/jquery-2.0.3.min.js"></script>
 
   <!-- analytics -->
   
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'true']);
-_gaq.push(['_trackPageview']);
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
 (function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-
-ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
 })();
 </script>
 
 
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body id="body" data-spy="scroll" data-target=".toc">
-  <div class="container" id="container">
-	<div class="content">
-	  <div class="page-header">
-  <h1><a class="brand" href="#">OrexZ</a></h1>
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Rex&#39;s BLOG</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header logo">
+  <h1>『郑洋的博客』<span class="blink-fast">∎</span></h1>
 </div>
-
-
 
 <div class="row page">
-	<div class="col-md-12">
-        <input type="text" id="local-search-input" name="q" results="0" placeholder="search notes..." class="st-search-input st-default-search-input form-control" style="margin-bottom:1em"/>
-        <div id="local-search-result"></div>
-		<div class="panel-group" id="notebook">
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a class="panel-title" data-toggle="collapse" data-parent="#notebook" href="#howto">
-						<i class="fa fa-folder"></i> howto		  
-				</div>
-				
-				    <div id="howto" class="panel-collapse collapse">
-				
-						<div class="panel-body">
-							<ul class="post">                                
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								        <li class="post-list-item"><a href="/2020/01/01/VimNote/hexo_integrate/">如何将本仓库集成到hexo</a></li>
-								    
-								
-								    
-								        <li class="post-list-item"><a href="/2020/01/01/VimNote/hexo/hexo_required_for_wixo/">搭建hexo并使用wixo主题</a></li>
-								    
-								
-								    
-								
-								    
-								
-							</ul>
-						</div>
-					</div>
-			</div>
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a class="panel-title" data-toggle="collapse" data-parent="#notebook" href="#pattern">
-						<i class="fa fa-folder"></i> pattern		  
-				</div>
-				
-				    <div id="pattern" class="panel-collapse collapse">
-				
-						<div class="panel-body">
-							<ul class="post">                                
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								        <li class="post-list-item"><a href="/2019/10/09/singleton/">单例模式</a></li>
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-							</ul>
-						</div>
-					</div>
-			</div>
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a class="panel-title" data-toggle="collapse" data-parent="#notebook" href="#vim">
-						<i class="fa fa-folder"></i> vim		  
-				</div>
-				
-				    <div id="vim" class="panel-collapse collapse">
-				
-						<div class="panel-body">
-							<ul class="post">                                
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								        <li class="post-list-item"><a href="/2020/01/11/VimNote/vim/vim-auto-fill-markdown-header/">使用VIM自动填充markdown的头部信息</a></li>
-								    
-								
-							</ul>
-						</div>
-					</div>
-			</div>
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a class="panel-title" data-toggle="collapse" data-parent="#notebook" href="#xterm">
-						<i class="fa fa-folder"></i> xterm		  
-				</div>
-				
-				    <div id="xterm" class="panel-collapse collapse">
-				
-						<div class="panel-body">
-							<ul class="post">                                
-								
-								    
-								        <li class="post-list-item"><a href="/2019/01/10/VimNote/xterm/xterm-conf/">xterm配置入门</a></li>
-								    
-								
-								    
-								        <li class="post-list-item"><a href="/2019/01/10/VimNote/xterm/term_fonts/">常用等宽字体</a></li>
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-								    
-								
-							</ul>
-						</div>
-					</div>
-			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a class="panel-title" data-toggle="collapse" data-parent="#notebook" href="#Scratch">
-						<i class="fa fa-folder"></i> Scratch		   
-				</div>
-				
-					<div id="Scratch" class="panel-collapse collapse">
-				
-					    <div class="panel-body">
-						    <ul class="post">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			    
-			                    
-			    
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/02/11/VimNote/backup/ssh-key/">Multiple SSH KEYs on The Same Computer</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/02/18/VimNote/backup/tips/">CentOS Chinese Inputmethod</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/02/22/VimNote/backup/git/">CentOS Git</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/02/23/VimNote/backup/opengrok/">CentOS opengrok</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/06/23/VimNote/backup/hexo/">Hexo Q&amp;A</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/06/25/VimNote/backup/shell/">Shell</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/07/21/VimNote/backup/lua/">Lua</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/08/12/VimNote/python/install_diff_python3_on_windows/">windows下安裝不同版本的python</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/08/13/VimNote/python/py_deal_excel_on_windows/">谈谈python处理excel的那些事</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/09/02/algorithm-ALG-ID-0001/">巧字决 - [ALG-ID-0001]</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/09/02/algorithm-ALG-ID-0002/">巧字决 - [ALG-ID-0002]</a></li>
-			                    
-			    
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/10/13/工厂方法模式/">工厂方法模式</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/18/VimNote/C/c-macro/">VimNote/C/c-macro</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/18/VimNote/C/c-strange/">VimNote/C/c-strange</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/18/VimNote/misc/markdown-use-local-image/">VimNote/misc/markdown-use-local-image</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/18/VimNote/python/python-operate-path-methods/">VimNote/python/python-operate-path-methods</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/18/VimNote/vim/vim-grep/">VimNote/vim/vim-grep</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/19/VimNote/linux-tools/grep/">VimNote/linux-tools/grep</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/20/VimNote/ideas/">VimNote/ideas</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/20/VimNote/vim/jumps/">VimNote/vim/jumps</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/22/VimNote/bash/strip_str/">VimNote/bash/strip_str</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/22/VimNote/linux-tools/dudf/">VimNote/linux-tools/dudf</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/26/VimNote/goals/">VimNote/goals</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/26/VimNote/C/c-if-else/">VimNote/C/c-if-else</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/26/VimNote/bash/foreach/">VimNote/bash/foreach</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/28/VimNote/docker/install-and-remove-docker/">VimNote/docker/install-and-remove-docker</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/28/VimNote/git/clean/">VimNote/git/clean</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/11/28/VimNote/vim/vim-help/">VimNote/vim/vim-help</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/13/VimNote/linux-compile/multi-src-files-to-single-ko/">VimNote/linux-compile/multi-src-files-to-single-ko</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/13/VimNote/linux-tools/apt-dpkg/">VimNote/linux-tools/apt-dpkg</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/13/VimNote/linux-tools/cifs/">VimNote/linux-tools/cifs</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/13/VimNote/python/run-system-cmd/">VimNote/python/run-system-cmd</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/13/VimNote/windows-tips/cmd/">VimNote/windows-tips/cmd</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/15/VimNote/editor/required-for-editor/">VimNote/editor/required-for-editor</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/19/VimNote/hw/assert-and-deassert/">VimNote/hw/assert-and-deassert</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/19/VimNote/linux-tools/cron/">VimNote/linux-tools/cron</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/19/VimNote/linux-tools/hostname/">VimNote/linux-tools/hostname</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/24/VimNote/linux-tools/xmllint/">VimNote/linux-tools/xmllint</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/24/VimNote/linux-kernel/dt/">VimNote/linux-kernel/dt</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/28/VimNote/linux-tools/opengrok/">VimNote/linux-tools/opengrok</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/28/VimNote/fzf/fzf_install/">VimNote/fzf/fzf_install</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/28/VimNote/linux-tools/term-color/">VimNote/linux-tools/term-color</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2019/12/28/VimNote/linux-kernel/bluetooth/l2cap/">VimNote/linux-kernel/bluetooth/l2cap</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/01/VimNote/demo/hello-world/">Hello World</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/01/VimNote/issue-fix/linux-no-disk-space/">VimNote/issue-fix/linux-no-disk-space</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/01/VimNote/linux-tools/mount/">VimNote/linux-tools/mount</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/01/VimNote/linux-tools/find/">VimNote/linux-tools/find</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/01/VimNote/linux-tools/xargs/">VimNote/linux-tools/xargs</a></li>
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/01/VimNote/demo/document_template/">文章样例模板</a></li>
-			                    
-			    
-			                    
-			    
-			                    
-			    
-			                    
-			                    <li class="post-list-item"><a href="/2020/01/11/VimNote/vim/vim-built-in-tips/">VimNote/vim/vim-built-in-tips</a></li>
-			                    
-			    
-			                    
-			    
-				            </ul>
-				        </div>
-				    </div>
-			</div>
-			
-		</div><!-- accordion -->
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+
+
+		<i class="fa fa-heart blink-slow"></i>
+
+		沉淀后的符文会印在这儿，慢慢地，它们会亮起来...
+
+</div>    
+
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2019/11/25/Blog/C/c-if-else/" >C语言中的悬挂式else</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-11-25  </div>
+		</div>
 	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="谈谈C语言中的悬挂式else"><a href="#谈谈C语言中的悬挂式else" class="headerlink" title="谈谈C语言中的悬挂式else"></a>谈谈C语言中的<code>悬挂式else</code></h1><p>C语言并不像python这类语言有缩进的限制，所以存在<code>悬挂式else</code></p>
+<h2 id="什么是悬挂式else"><a href="#什么是悬挂式else" class="headerlink" title="什么是悬挂式else"></a>什么是<code>悬挂式else</code></h2><p>我们先看下例子。</p>
+<p>首先说明，下面例子中的代码，都是能够在笔者主机平台(x86)使用gcc编译通过，并且每部分都可以正常运行的。</p>
+<p>为了说明并聚焦问题，并没有使用宏来简化代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test_entry_01</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a)</span><br><span class="line">        <span class="keyword">if</span> (b)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; b if\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; b else\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; who am I ? # a if ??? yes\n"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test_entry_02</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a)</span><br><span class="line">        <span class="keyword">if</span> (b)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; b if\n"</span>, __func__);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; a else ? no I'm b else."</span>, __func__); <span class="comment">// no new line</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"more info...\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; who am I ? # I'm a else.\n"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test_entry_03</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; nothing to be done...\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">if</span> (b)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; b if, but not nest in a.\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%s&gt; b else ? yes\n"</span>, __func__);</span><br><span class="line">            <span class="keyword">if</span> (c)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%s&gt; who am I? I don't belong to any of the control blocks above.\n"</span>, __func__);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; who am I? I'm c else.\n"</span>, __func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Usage: &lt;APPNAME&gt; a b c\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    a = <span class="built_in">strcmp</span>(argv[<span class="number">1</span>], <span class="string">"1"</span>) == <span class="number">0</span> ? <span class="number">1</span>: <span class="number">0</span>;</span><br><span class="line">    b = <span class="built_in">strcmp</span>(argv[<span class="number">2</span>], <span class="string">"1"</span>) == <span class="number">0</span> ? <span class="number">1</span>: <span class="number">0</span>;</span><br><span class="line">    c = <span class="built_in">strcmp</span>(argv[<span class="number">3</span>], <span class="string">"1"</span>) == <span class="number">0</span> ? <span class="number">1</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a=%d, b=%d, c=%d\n"</span>, a,b,c);</span><br><span class="line"></span><br><span class="line">    test_entry_01(a,b);</span><br><span class="line">    test_entry_02(a,b);</span><br><span class="line">    test_entry_03(a,b,c);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>编译并查看输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o test .&#x2F;test_else.c</span><br><span class="line">$ .&#x2F;test</span><br><span class="line">&gt; Usage: &lt;APPNAME&gt; a b c</span><br><span class="line">$ .&#x2F;test 1 1 1</span><br><span class="line">&gt;</span><br><span class="line">a&#x3D;1, b&#x3D;1, c&#x3D;1</span><br><span class="line">test_entry_01&gt; b if</span><br><span class="line">test_entry_02&gt; b if</span><br><span class="line">test_entry_03&gt; nothing to be done...</span><br><span class="line">test_entry_03&gt; b if</span><br><span class="line">test_entry_03&gt; who am I? I don&#39;t belong to any of the control blocks above.</span><br></pre></td></tr></table></figure>
+
+<p>这里并没有列出所有的情况，感兴趣的小伙伴可以自己编译试试。</p>
+<p>其实源码中，printf包含的字符串已经说明了所有相关的可能。</p>
+<p>小结：</p>
+<ol>
+<li>悬挂式else的语法并不具有很好的可读性，请在使用C语言的时候加上控制块<code>{}</code></li>
+<li>添加控制块<code>{}</code>后，可以避免你认为的这种歧义性</li>
+<li>if-else在不添加控制块符号<code>{}</code>的时候，表示后面很简短，简短到只能允许一条指令</li>
+<li>请在书写代码的时候注意缩进，虽然C语言很自由，但请体谅有可能阅读你代码的其他人。</li>
+</ol>
+<h2 id="如何写出好看的C语言if-else控制流"><a href="#如何写出好看的C语言if-else控制流" class="headerlink" title="如何写出好看的C语言if-else控制流"></a>如何写出好看的C语言if-else控制流</h2><p>当你阅读比较好的C项目代码的时候，你可能会感慨为何人家的代码写的这么好，一看就懂，或者控制流程很是流畅？</p>
+<p>这个时候你其实应该停下来，等等你的灵魂，仔细花时间琢磨下为什么他们写的好。</p>
+<p>我写一个例子，看看为什么这样写</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_it_01</span><span class="params">(<span class="keyword">int</span> cond)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cond != <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; normal branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; exception branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_it_02</span><span class="params">(<span class="keyword">int</span> cond)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cond != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; normal branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; exception branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_it_03</span><span class="params">(<span class="keyword">int</span> cond)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cond != <span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; normal branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; exception branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_it_04</span><span class="params">(<span class="keyword">int</span> cond)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cond != <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; normal branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s&gt; exception branch\n"</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deal_exception</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"deal exception...\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cond;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> exception = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Usage: &lt;appname&gt; cond exception\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// simple implement, just for test.</span></span><br><span class="line">    cond = *(argv[<span class="number">1</span>]) - <span class="string">'0'</span>;</span><br><span class="line">    exception = *(argv[<span class="number">2</span>]) - <span class="string">'0'</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"cond: %d, exception: %d\n"</span>, cond,exception);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!do_it_01(cond))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"do_it_01 err ? do some thing.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!do_it_02(cond))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"do_it_02 err ? do some thing.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!do_it_03(cond))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"do_it_03 err ? do some thing.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!do_it_04(cond))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"do_it_04 err ? do some thing.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (exception)&#123;</span><br><span class="line">            deal_exception();</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"default..., do some process..\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>执行与输出结果，同学可以自行尝试，本文代码可以正常编译运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;test 5 0</span><br><span class="line">&gt;</span><br><span class="line">cond: 5, exception: 0</span><br><span class="line">do_it_01&gt; normal branch</span><br><span class="line">do_it_02&gt; normal branch</span><br><span class="line">do_it_03&gt; normal branch</span><br><span class="line">do_it_04&gt; normal branch</span><br><span class="line">default..., do some process..</span><br><span class="line">$ .&#x2F;test 5 1</span><br><span class="line">&gt;</span><br><span class="line">cond: 5, exception: 1</span><br><span class="line">do_it_01&gt; normal branch</span><br><span class="line">do_it_02&gt; normal branch</span><br><span class="line">do_it_03&gt; normal branch</span><br><span class="line">do_it_04&gt; normal branch</span><br><span class="line">deal exception...</span><br><span class="line">$ .&#x2F;test 3 0</span><br><span class="line">&gt;</span><br><span class="line">cond: 3, exception: 0</span><br><span class="line">do_it_01&gt; normal branch</span><br><span class="line">do_it_02&gt; normal branch</span><br><span class="line">do_it_03&gt; exception branch</span><br><span class="line">do_it_03 err ? do some thing.</span><br></pre></td></tr></table></figure>
+
+<p>这里没有列出所有的输出结果，不过以从源码上，已经能够说明问题了。</p>
+<p>这样写的好处有哪些：</p>
+<ol>
+<li>易读，流程一条线，异常很明显，都是在判断失败后处理错误逻辑</li>
+<li>函数设计结构统一，返回值是精心设定的</li>
+<li>好看的输出格式</li>
+</ol>
+<p>设计要点：</p>
+<ol>
+<li>前文提到，函数的返回值需要精心设计，当然，如果返回的TRUE、FALSE不能满足，其实其他的值也是可以的，只不过要多加判断</li>
+<li>书写逻辑一条线，异常都在判断if失败的时候处理</li>
+</ol>
+
+	
+	</div>
+  <a type="button" href="/2019/11/25/Blog/C/c-if-else/#more" class="btn btn-default more">Read More</a>
 </div>
 
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2019/11/25/Blog/C/c-strange/" >C语言中的小事</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-11-25  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="说说C语言中的小事"><a href="#说说C语言中的小事" class="headerlink" title="说说C语言中的小事"></a>说说C语言中的小事</h1><p>本文记录C语言中了一些你比较疑惑，或者奇怪的问题。</p>
+<h2 id="printf-“-s-n”-会输出什么？"><a href="#printf-“-s-n”-会输出什么？" class="headerlink" title="printf(“%s\n”);会输出什么？"></a>printf(“%s\n”);会输出什么？</h2><p>这看起来很奇怪不是么？<br>依你来看这就是一个错误的语法呀？</p>
+<p>没错，但也错了，对于GCC编译器来说，这是一个warning。</p>
+<p>我们看个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> * test_str = <span class="string">"Hi Bro"</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, test_str);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">乱码或者其他不可读的内容</span><br><span class="line">Hi Bro</span><br><span class="line">Hi Bro</span><br></pre></td></tr></table></figure>
+<p>这个例子需要看printf的实现源码才能知道为什么会这样。</p>
+<p>TBD…</p>
+<h2 id="你考虑过C语言符号的可见性么？"><a href="#你考虑过C语言符号的可见性么？" class="headerlink" title="你考虑过C语言符号的可见性么？"></a>你考虑过C语言符号的可见性么？</h2><p>符号的可见性，比如这样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">students</span> = &#123;</span> &amp;students, &amp;students &#125;;</span><br></pre></td></tr></table></figure>
+<p>关于符号students，为什么可以还没有定义完成就可以被使用？</p>
+<p>其实这可以从编译原理的角度分析：<br>由于students是编译时确定的，不论他是global还是static，已经在image中分配了它的空间，那么它的地址也就确定了，所以我们看到&amp;students可以被使用。</p>
+<h2 id="关于结构体初始化和赋值的一些问题"><a href="#关于结构体初始化和赋值的一些问题" class="headerlink" title="关于结构体初始化和赋值的一些问题"></a>关于结构体初始化和赋值的一些问题</h2><p>初始化结构体操作，像这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">students</span> = &#123;</span></span><br><span class="line">    .next = &amp;students,</span><br><span class="line">    .prev = &amp;students,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这没有问题，但像下面这样就会出现问题：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">inner</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">outter</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">inner</span> <span class="title">i</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">outter</span> * <span class="title">out</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">outter</span>));</span></span><br><span class="line">    out.i = &#123;<span class="number">100</span>&#125;;<span class="comment">// 错误的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根本原因有两个：</p>
+<ol>
+<li>一个是，结构体只能在初始化的时候赋值，并且不能是malloc分配方式，只能是编译时分配</li>
+<li>另一个是，编译时确定的结构体内存，除了在初始化的时候可以像students那样使用，在之后的赋值动作都不可以这样，只能按照成员变量挨个赋值。</li>
+</ol>
+<p>正确做法是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">outter</span> * <span class="title">out</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">outter</span>));</span></span><br><span class="line">    out.i.id = <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="你使用过-include-“xxx-c”这样的宏么？"><a href="#你使用过-include-“xxx-c”这样的宏么？" class="headerlink" title="你使用过#include “xxx.c”这样的宏么？"></a>你使用过#include “xxx.c”这样的宏么？</h2><p>有时候在编译C语言的时候，你会遇到重复定义的问题，但我想说的并不是普通的重复定义问题。</p>
+<p>我们知道.h和.c只不过是用来给编译器区分的文件类型，本质上都是源文件，只不过人为的把它分成：头文件和源文件</p>
+<p>也就是说我们可以这样使用include</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"demo.c"</span> <span class="comment">// 就像包含.h文件一样。</span></span></span><br></pre></td></tr></table></figure>
+<p>而如果碰到使用这个技巧的源文件的时候，你有故作聪明的在编译的时候加了源文件 demo.o (demo.c),<br>这个时候就会重复定义。</p>
+<p>那么总结的就是，如果看到有.c文件，但是在编译的时候没有在编译源文件列表中添加，那么肯定是使用了本文说的这个技术。</p>
+<h2 id="看C源代码的时候，你有这样的思维定式么？"><a href="#看C源代码的时候，你有这样的思维定式么？" class="headerlink" title="看C源代码的时候，你有这样的思维定式么？"></a>看C源代码的时候，你有这样的思维定式么？</h2><p>在C语言编程的时候，与大多数语言一样，你要在不断的层次转换中知道自己所处的位置，<br>不过我想说的是，很多同学当基础知识不够扎实的时候，就会不知道自己在哪里</p>
+<p>在C语言中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dev-&gt;mii.dev = dev-&gt;net</span><br></pre></td></tr></table></figure>
+<p>这样简单的一句话说明:<br>符号’-&gt;’表示前面的操作数是指针，并且他结构中有mii成员，而成员mii是是么，需要后面的符号’.’来说明，<br>原来它是一个结构体内嵌成员，它包含dev成员，不过dev是指针还是内嵌成员并不知道。<br>在左值中’-&gt;’符号有同样的解释，不过这里之所以可以这样赋值，就说明前面的’mii.dev’中的dev是个指针，<br>而且’dev-&gt;net’也是一个指针。</p>
+
+	
+	</div>
+  <a type="button" href="/2019/11/25/Blog/C/c-strange/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2019/08/12/Blog/python/python-operate-path-methods/" >python处理路径常用的方法汇总</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-08-12  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="Python-常见的几种处理路径问题"><a href="#Python-常见的几种处理路径问题" class="headerlink" title="Python 常见的几种处理路径问题"></a>Python 常见的几种处理路径问题</h1><p>Python 虽然很方便，文档资料也是随处可见，本文内容也不是创新的内容，只是希望简单的总结一下编程中常见的处理路径的问题，希望对大家有所帮助。</p>
+<h2 id="如何获得当前文件的路径"><a href="#如何获得当前文件的路径" class="headerlink" title="如何获得当前文件的路径"></a>如何获得当前文件的路径</h2><p>一般这里指的路径分两种，一个是绝对路径，另一个是相对路径。</p>
+<p>那么我们简单先介绍下几种路径的获得方法，最后看看例子。</p>
+<blockquote>
+<p><em>__file__</em></p>
+</blockquote>
+<p>这是python内置的变量，表示包含文件名称的路径，可以肯定的是，<br>这个变量中一定包含文件名称，至于路径因执行 python 的方法不同而不同。</p>
+<blockquote>
+<p><em>os.getcwd()</em></p>
+</blockquote>
+<p>这是os模块的函数，不是os.path。</p>
+<p>它返回的是平台支持的文件路径，并不包含文件名称，而是路径的绝对值。</p>
+<blockquote>
+<p><em>os.path.realpath(__file__)</em></p>
+</blockquote>
+<p>返回指定文件名的规范路径，消除路径中遇到的任何符号链接,<br>一般大部分系统都支持它。</p>
+<blockquote>
+<p><em>os.path.abspath(__file__)</em></p>
+</blockquote>
+<p>返回路径名路径的标准化绝对化版本。在大多数平台上，这等效于按如下方式：<br>os.path.normpath(os.path.join(os.getcwd(), __file__)) 等价于 os.path.abspath(__file__)。</p>
+<blockquote>
+<p><em>sys.path[0]</em></p>
+</blockquote>
+<p>sys.argv[0]|获得模块所在的路径，一般由系统决定是否是全名。</p>
+<p>前面介绍了5种方法，我们一起看看在不同条件下的输出情况：</p>
+<p>文件内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python3</span></span><br><span class="line"><span class="comment">#filename: filename_test.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"></span><br><span class="line">print(<span class="string">"filename:[__file__] &gt;"</span>, __file__)</span><br><span class="line">print(<span class="string">"filename:[os.getcwd()] &gt;"</span>, os.getcwd())</span><br><span class="line">print(<span class="string">"filename:[os.path.realpath(__file__)] &gt;"</span>,os.path.realpath(__file__))</span><br><span class="line">print(<span class="string">"filename:[os.path.abspath(__file__)] &gt;"</span>, os.path.abspath(__file__))</span><br><span class="line">print(<span class="string">"filename:[sys.path[0]] &gt;"</span>, sys.path[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<p>输出内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[cmd] &gt; python filename_test.py</span><br><span class="line">filename:[__file__] &gt; filename_test.py</span><br><span class="line">filename:[os.getcwd()] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts</span><br><span class="line">filename:[os.path.realpath(__file__)] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[os.path.abspath(__file__)] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[sys.path[0]] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts</span><br><span class="line"></span><br><span class="line">[cmd] &gt; python ..&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[__file__] &gt; ..&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[os.getcwd()] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts</span><br><span class="line">filename:[os.path.realpath(__file__)] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[os.path.abspath(__file__)] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[sys.path[0]] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts</span><br><span class="line"></span><br><span class="line">[cmd] &gt; .&#x2F;filename_test.py</span><br><span class="line">filename:[__file__] &gt; .&#x2F;filename_test.py</span><br><span class="line">filename:[os.getcwd()] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts</span><br><span class="line">filename:[os.path.realpath(__file__)] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[os.path.abspath(__file__)] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts&#x2F;filename_test.py</span><br><span class="line">filename:[sys.path[0]] &gt; &#x2F;home&#x2F;rex&#x2F;C_LD&#x2F;common_Makefile&#x2F;scirpts</span><br></pre></td></tr></table></figure>
+
+<p>一般获得当前模块或者你称之为脚本文件的绝对路径，使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path.dirname(os.path.realpath(__file__))</span><br></pre></td></tr></table></figure>
+<p>看到了说出应该差不多就明白了，不过具体的细节请查看<a href="https://docs.python.org/3.8/library/os.path.html" target="_blank" rel="noopener">官方文档</a>。<br>当然看看源码也是有好处的，如果你有时间的话。</p>
+<h2 id="其他常用的路径操作手法"><a href="#其他常用的路径操作手法" class="headerlink" title="其他常用的路径操作手法"></a>其他常用的路径操作手法</h2><blockquote>
+<p>获得文件名称</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path.basename(__file__)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获得文件名称和绝对路径</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path.split(os.path.realpath(__file__))</span><br></pre></td></tr></table></figure>
+
+<p>其他的路径裁剪，都可以使用本文提供的方法，<br>加上适当的<code>os.path</code>模块中的处理函数，来满足你的要求。</p>
+
+	
+	</div>
+  <a type="button" href="/2019/08/12/Blog/python/python-operate-path-methods/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2019/08/12/Blog/python/install_diff_python3_on_windows/" >windows下安裝不同版本的python</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-08-12  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h2 id="什么叫不同版本的python？"><a href="#什么叫不同版本的python？" class="headerlink" title="什么叫不同版本的python？"></a>什么叫不同版本的python？</h2><p>一般对于开发人员来说，工具的版本并不陌生。<br>python 大家或者熟悉或者听说过，用的人自然懂，这里也就不过多介绍了。<br>不过，对于linux的开发人员来说，安装不同版本的python轻而易举，经常和命令行打交道的他们可以分分钟完成不同版本的配置。<br>对于windows开发人员也不例外，他们一样熟悉着自己的工作环境，并且熟练的掌握着吃饭的家伙(偷笑)。</p>
+<p>本文主要是给那些不太熟悉windows操作系统，且想要开发的用户，用以来解决一些在windows开发环境上的疑惑。</p>
+<p>python发展历史我不想追究，随便使用个搜索引擎都能轻松了解到，这里只告诉您，python有两个重要的版本：</p>
+<ol>
+<li>python2 历史版本，至今还有很多大项目在用，所以还没有废弃，python社区还在做兼容性维护</li>
+<li>python3 革新版本，从python2跃迁而来，添加了很多新的特性，有些基础内容已经从根本上改变</li>
+</ol>
+<h2 id="在windows上安装不同版本python的方法"><a href="#在windows上安装不同版本python的方法" class="headerlink" title="在windows上安装不同版本python的方法"></a>在windows上安装不同版本python的方法</h2><p>其实在windows上，安装不同版本python，笔者感觉主要有三种方法：</p>
+<ol>
+<li>通过<a href="https://www.python.org/" target="_blank" rel="noopener">python 官网</a>,下载不同版本的python，然后通过安装配置，最后做一些手脚就可以顺利完成配置。</li>
+<li>通过 <a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda</a>,配置你想要的版本，它自带版本管理系统，可以方便帮助隔离不同的python版本环境。</li>
+<li>通过python第三方版本管理库，完成python版本的隔离控制</li>
+</ol>
+<p>本文主要介绍在windows上使用前两种方法。</p>
+<h2 id="官网下载，安装自定义"><a href="#官网下载，安装自定义" class="headerlink" title="官网下载，安装自定义"></a>官网下载，安装自定义</h2><h3 id="下载python的不同版本"><a href="#下载python的不同版本" class="headerlink" title="下载python的不同版本"></a>下载python的不同版本</h3><p><a href="https://www.python.org/" target="_blank" rel="noopener">python 官网</a>中有两个版本的下载地址，仔细找找很容以找到。<br>本文实例以图示版本为例，如果安装其他版本，你应该知道怎么找。</p>
+<p>这里windows用户喜欢下载安装包，方便快捷的下载安装。</p>
+<p>步骤如图：<br>step.1 找到官网下载地址</p>
+<p><img src="/images/install_diff_python3_on_windows/01.png" alt="01"></p>
+<p>step.2选择你需要的安装包下载它<br><img src="/images/install_diff_python3_on_windows/02.png" alt="02"></p>
+<p>step.3双击安装，你懂的<br><img src="/images/install_diff_python3_on_windows/03.png" alt="03"></p>
+<h3 id="定制化自己的python版本环境并安装"><a href="#定制化自己的python版本环境并安装" class="headerlink" title="定制化自己的python版本环境并安装"></a>定制化自己的python版本环境并安装</h3><p>本人比较喜欢干净的工作环境，所以一般安装的python也是自己使用，并不影响其他开发者。<br>你需要对自己安装的版本及路径了如指掌，后续做一些修改的时候也方便一些。</p>
+<p>以python3安装为例，python2雷同。<br>图示步骤如下：</p>
+<p>step.1 选择工具自动添加环境</p>
+<p><img src="/images/install_diff_python3_on_windows/04.png" alt="04"></p>
+<p>step.2 手动选择你想要安装的目录<br><img src="/images/install_diff_python3_on_windows/05.png" alt="05"></p>
+<p>step.3 安装进行中<br><img src="/images/install_diff_python3_on_windows/05.png" alt="06"></p>
+<p>安装过程中，可能会提示兼容以往的 DOS 最大路径字符长度限制，请 enable 。</p>
+<p>安装完成后配置环境路径，如图：</p>
+<p><img src="/images/install_diff_python3_on_windows/07.png" alt="07"></p>
+<h3 id="为了使用命令行，修改以做兼容"><a href="#为了使用命令行，修改以做兼容" class="headerlink" title="为了使用命令行，修改以做兼容"></a>为了使用命令行，修改以做兼容</h3><p>修改python2安装路径下的执行文件为：python2.exe<br>修改python3安装路径下的执行文件为：python3.exe</p>
+<p>修改执行入口程序的名字，操作类似如下：<br><img src="/images/install_diff_python3_on_windows/08.png" alt="08"></p>
+<p>当然，这里你可以复制原来的可执行文件然后修改名字也是可以的，不过<code>python</code>这命令在cmd中按照<code>PATH</code>配置顺序执行的，所以最好指定python版本。</p>
+<p>这里有一个小技巧，如果你想要<code>python</code>命令，默认使用哪一个版本，那就保留该版本的两个可执行文件，比如：<br>对于python3来说，保留python.exe和python3.exe，但是python2中的可执行文件只保留python2.exe。<br>这样，我们得到了三个命令，你可以自由切换：</p>
+<ol>
+<li>python – 表示python3</li>
+<li>python3 – 表示python3</li>
+<li>python2 – 表示python2</li>
+</ol>
+<p>重启命令行，操作验证：<br><img src="/images/install_diff_python3_on_windows/09.png" alt="09"></p>
+<h3 id="不同版本的pip管理器的使用"><a href="#不同版本的pip管理器的使用" class="headerlink" title="不同版本的pip管理器的使用"></a>不同版本的pip管理器的使用</h3><p>正常来说，pip在笔者下载的这两个版本中都有默认支持了。<br>对于老版本的python2如果没有，可以简单的在搜索引擎上找到安装python2的pip的解决方法。</p>
+<p>由于之前我们修改了python.exe以支持想要的版本区分，不过也使得对应版本的pip.exe无法使用了。</p>
+<p>这里提供简单的操作方法：</p>
+<pre><code>C:\Users\imcat&gt;python2 -m pip --version
+pip 18.1 from C:\Python2.7\lib\site-packages\pip (python 2.7)
+
+C:\Users\imcat&gt;python3 -m pip --version
+pip 19.0.3 from C:\python3.7\lib\site-packages\pip (python 3.7)</code></pre><p>结果类似这样：<br><img src="/images/install_diff_python3_on_windows/10.png" alt="10"></p>
+<p>这样，你就可以使用pip安装你想要的库到指定版本路径中。</p>
+<h2 id="使用anaconda自带以的版本控制"><a href="#使用anaconda自带以的版本控制" class="headerlink" title="使用anaconda自带以的版本控制"></a>使用anaconda自带以的版本控制</h2><p>anaconda 是一个比较有意思的开源项目，它对于python的版本控制非常到位，并且内置了很多有用的功能。</p>
+<p>由于它的强大，省去了我们的配置时间，接下来简单看看如何使用 anaconda。</p>
+<h3 id="anaconda-的下载与安装"><a href="#anaconda-的下载与安装" class="headerlink" title="anaconda 的下载与安装"></a>anaconda 的下载与安装</h3><p>去<a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda 的官网</a>下载下来python3版本，其实我们只需要下载python3版本，也就是比较前卫的版本。<br>之所以这样，是因为conda管理器可以帮助我们自动下载python2的内容，而且也方便切换。</p>
+<p>下载安装步骤如图：</p>
+<p>step.1 找到官网下载地址并下载<br><img src="/images/install_diff_python3_on_windows/11.png" alt="11"></p>
+<p>step.2 双击安装<br><img src="/images/install_diff_python3_on_windows/12.png" alt="12"></p>
+<p>step.3 选择一个独立的路径<br><img src="/images/install_diff_python3_on_windows/13.png" alt="13"></p>
+<p>step.4 前面安装过默认的python，因为anaconda是独立的环境，所以去掉图示勾选<br><img src="/images/install_diff_python3_on_windows/14.png" alt="14"></p>
+<p>step.5安装过程有些枯燥，由于不是mini版本，需要一些时间，去喝点水吧<br><img src="/images/install_diff_python3_on_windows/15.png" alt="15"></p>
+<p>由于默认安装了一些应用，所以安装时间稍微长一些，当然你可以下载它的mini版本，这里不做赘述了。</p>
+<p>安装完成后，验证方法只需查看开始菜单中的anaconda即可，如图：<br><img src="/images/install_diff_python3_on_windows/16.png" alt="16"></p>
+<p>如果你喜欢gui，那就启动gui，笔者一般喜欢使用命令行，所以使用shell接口就足够了，本文也主要介绍shell接口的相关配置，也就是<code>anaconda prompt</code>。</p>
+<p>运行效果如图：<br><img src="/images/install_diff_python3_on_windows/17.png" alt="17"></p>
+<h3 id="conda-命令的简单使用"><a href="#conda-命令的简单使用" class="headerlink" title="conda 命令的简单使用"></a>conda 命令的简单使用</h3><p>anaconda 的管理器接口是 conda 应用，从名字看就很容易理解。<br>这里列出一些常用的 conda 管理器的常用命令，如果想要更详细的内容，可以自行搜索官网文档。</p>
+<p>以下命令都是在<code>anaconda</code>的shell中完成的，也就是<code>anaconda prompt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 帮助:</span></span><br><span class="line">conda -h</span><br><span class="line"><span class="comment"># 查看conda版本:</span></span><br><span class="line">conda -V</span><br><span class="line"><span class="comment"># 查看虚拟环境列表:</span></span><br><span class="line">conda env list 或 conda info -e 或 conda info --envs</span><br><span class="line"><span class="comment"># 创建python虚拟环境:</span></span><br><span class="line">conda create -n your_env_name python=X.X（2.7、3.6等)</span><br><span class="line">your_env_name &gt;&gt; 就是你的环境名字，识别号而已</span><br><span class="line">python=X.X &gt;&gt; 就是你要安装的虚拟环境使用的真实环境版本</span><br><span class="line"><span class="comment"># 向指定虚拟环境中安装额外的库:</span></span><br><span class="line">conda install -n your_env_name [package]</span><br><span class="line">其实在虚拟环境中，通过正常的安装流程也是一样可以办到的，当然需要你切到虚拟环境下。</span><br><span class="line"><span class="comment"># 开启虚拟环境:</span></span><br><span class="line">activate your_env_name</span><br><span class="line"><span class="comment"># 关闭虚拟环境:</span></span><br><span class="line">deactivate</span><br><span class="line"><span class="comment"># 删除虚拟环境:</span></span><br><span class="line">conda remove -n your_env_name(虚拟环境名称) --all</span><br><span class="line"><span class="comment"># 删除环境中的某个包:</span></span><br><span class="line">conda remove --name your_env_name package_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="简单操作与验证"><a href="#简单操作与验证" class="headerlink" title="简单操作与验证"></a>简单操作与验证</h3><p>安装python2</p>
+<pre><code>conda create -n python27 python=2.7</code></pre><p>查看安装好的虚拟环境</p>
+<pre><code>conda env list</code></pre><p>切换到指定的虚拟环境</p>
+<pre><code>activate python27</code></pre><p>验证版本</p>
+<pre><code>python --version</code></pre><p>安装卸载包</p>
+<pre><code>python -m pip install openpyxl
+python -m pip uninstall openpyxl</code></pre><p>退出环境</p>
+<pre><code>deactive</code></pre><p>简单、直接、粗暴，很符合有强迫症的人士。</p>
+<h2 id="两种方法的利与弊"><a href="#两种方法的利与弊" class="headerlink" title="两种方法的利与弊"></a>两种方法的利与弊</h2><p>其实就方法而言，并没有什么高低之分，只不过针对应用场景来说，有的方法稍微有点别手而已。</p>
+<p>比如，笔者在工作中就遇到的情况，这里简单描述下：<br>项目同时使用python2和python3的内容，因为一早就有的工具，需要你去继承使用；<br>当然有些同学会说，自己可以将python2的项目修改成python3兼容的，不过这需要花费很多成本，<br>一般在项目中，除非逼不得已，一般都不会这么做，而是一起使用python3和python2，这个时候，<br>貌似纯粹的虚拟环境就有点劣势，所以配置干净的系统环境，也就是使用第一种方法，就成了符合当前策略的主要方案。</p>
+<p>而一般一个项目的开发可能支持不同的python版本，设计之初，就可能考虑到不同版本的向后兼容性，<br>需要不停的切换版本验证，这种时候，虚拟环境的特长就显露出来了。</p>
+<p>当然，这也是笔者个人所思，百家想法，各有观点，这里就不过多的讨论了。</p>
+<p>好了，终于在windows上，不断的卸载和安装，完成了这篇文章。<br>^_^ 祝贺下(拍手)。</p>
+
+	
+	</div>
+  <a type="button" href="/2019/08/12/Blog/python/install_diff_python3_on_windows/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+
+   
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/C/">C<span>2</span></a></li>
+		
+			<li><a href="/categories/python/">python<span>2</span></a></li>
+		
+		</ul>
+	</div>
+
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/install-python/">install_python<span>1</span></a></li>
+		
+			<li><a href="/tags/syntax/">syntax<span>3</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2019/11/25/Blog/C/c-if-else/" ><i class="fa fa-file-o"></i>C语言中的悬挂式else</a>
+      </li>
+    
+      <li>
+        <a href="/2019/11/25/Blog/C/c-strange/" ><i class="fa fa-file-o"></i>C语言中的小事</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/12/Blog/python/python-operate-path-methods/" ><i class="fa fa-file-o"></i>python处理路径常用的方法汇总</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/12/Blog/python/install_diff_python3_on_windows/" ><i class="fa fa-file-o"></i>windows下安裝不同版本的python</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/OrexZ" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
 	</div>
   </div>
   <div class="container-narrow">
-	<footer> <p>
+  <footer> <p>
   &copy; 2020 Rex
   
-      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
-</p> </footer>
-  </div> <!-- container-narrow -->
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
   
 <a id="gotop" href="#">   
-  <span>▲</span> 
+  <span>⬆︎TOP</span>
 </a>
 
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.tableofcontents.min.js"></script>
-<script src="/js/tocgenerator.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/search.js"></script> 
-
-
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
@@ -985,6 +585,5 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
      searchFunc(path, 'local-search-input', 'local-search-result');
    </script>
 
-
 </body>
-</html>
+   </html>

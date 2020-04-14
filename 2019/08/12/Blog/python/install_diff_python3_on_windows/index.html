@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>windows下安裝不同版本的python | Rex&#39;s BLOG</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="windows下安裝不同版本的python"/>
+  <meta property="og:site_name" content="Rex&#39;s BLOG"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Rex&#39;s BLOG</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> windows下安裝不同版本的python</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="什么叫不同版本的python？"><a href="#什么叫不同版本的python？" class="headerlink" title="什么叫不同版本的python？"></a>什么叫不同版本的python？</h2><p>一般对于开发人员来说，工具的版本并不陌生。<br>python 大家或者熟悉或者听说过，用的人自然懂，这里也就不过多介绍了。<br>不过，对于linux的开发人员来说，安装不同版本的python轻而易举，经常和命令行打交道的他们可以分分钟完成不同版本的配置。<br>对于windows开发人员也不例外，他们一样熟悉着自己的工作环境，并且熟练的掌握着吃饭的家伙(偷笑)。</p>
+<p>本文主要是给那些不太熟悉windows操作系统，且想要开发的用户，用以来解决一些在windows开发环境上的疑惑。</p>
+<p>python发展历史我不想追究，随便使用个搜索引擎都能轻松了解到，这里只告诉您，python有两个重要的版本：</p>
+<ol>
+<li>python2 历史版本，至今还有很多大项目在用，所以还没有废弃，python社区还在做兼容性维护</li>
+<li>python3 革新版本，从python2跃迁而来，添加了很多新的特性，有些基础内容已经从根本上改变</li>
+</ol>
+<h2 id="在windows上安装不同版本python的方法"><a href="#在windows上安装不同版本python的方法" class="headerlink" title="在windows上安装不同版本python的方法"></a>在windows上安装不同版本python的方法</h2><p>其实在windows上，安装不同版本python，笔者感觉主要有三种方法：</p>
+<ol>
+<li>通过<a href="https://www.python.org/" target="_blank" rel="noopener">python 官网</a>,下载不同版本的python，然后通过安装配置，最后做一些手脚就可以顺利完成配置。</li>
+<li>通过 <a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda</a>,配置你想要的版本，它自带版本管理系统，可以方便帮助隔离不同的python版本环境。</li>
+<li>通过python第三方版本管理库，完成python版本的隔离控制</li>
+</ol>
+<p>本文主要介绍在windows上使用前两种方法。</p>
+<h2 id="官网下载，安装自定义"><a href="#官网下载，安装自定义" class="headerlink" title="官网下载，安装自定义"></a>官网下载，安装自定义</h2><h3 id="下载python的不同版本"><a href="#下载python的不同版本" class="headerlink" title="下载python的不同版本"></a>下载python的不同版本</h3><p><a href="https://www.python.org/" target="_blank" rel="noopener">python 官网</a>中有两个版本的下载地址，仔细找找很容以找到。<br>本文实例以图示版本为例，如果安装其他版本，你应该知道怎么找。</p>
+<p>这里windows用户喜欢下载安装包，方便快捷的下载安装。</p>
+<p>步骤如图：<br>step.1 找到官网下载地址</p>
+<p><img src="/images/install_diff_python3_on_windows/01.png" alt="01"></p>
+<p>step.2选择你需要的安装包下载它<br><img src="/images/install_diff_python3_on_windows/02.png" alt="02"></p>
+<p>step.3双击安装，你懂的<br><img src="/images/install_diff_python3_on_windows/03.png" alt="03"></p>
+<h3 id="定制化自己的python版本环境并安装"><a href="#定制化自己的python版本环境并安装" class="headerlink" title="定制化自己的python版本环境并安装"></a>定制化自己的python版本环境并安装</h3><p>本人比较喜欢干净的工作环境，所以一般安装的python也是自己使用，并不影响其他开发者。<br>你需要对自己安装的版本及路径了如指掌，后续做一些修改的时候也方便一些。</p>
+<p>以python3安装为例，python2雷同。<br>图示步骤如下：</p>
+<p>step.1 选择工具自动添加环境</p>
+<p><img src="/images/install_diff_python3_on_windows/04.png" alt="04"></p>
+<p>step.2 手动选择你想要安装的目录<br><img src="/images/install_diff_python3_on_windows/05.png" alt="05"></p>
+<p>step.3 安装进行中<br><img src="/images/install_diff_python3_on_windows/05.png" alt="06"></p>
+<p>安装过程中，可能会提示兼容以往的 DOS 最大路径字符长度限制，请 enable 。</p>
+<p>安装完成后配置环境路径，如图：</p>
+<p><img src="/images/install_diff_python3_on_windows/07.png" alt="07"></p>
+<h3 id="为了使用命令行，修改以做兼容"><a href="#为了使用命令行，修改以做兼容" class="headerlink" title="为了使用命令行，修改以做兼容"></a>为了使用命令行，修改以做兼容</h3><p>修改python2安装路径下的执行文件为：python2.exe<br>修改python3安装路径下的执行文件为：python3.exe</p>
+<p>修改执行入口程序的名字，操作类似如下：<br><img src="/images/install_diff_python3_on_windows/08.png" alt="08"></p>
+<p>当然，这里你可以复制原来的可执行文件然后修改名字也是可以的，不过<code>python</code>这命令在cmd中按照<code>PATH</code>配置顺序执行的，所以最好指定python版本。</p>
+<p>这里有一个小技巧，如果你想要<code>python</code>命令，默认使用哪一个版本，那就保留该版本的两个可执行文件，比如：<br>对于python3来说，保留python.exe和python3.exe，但是python2中的可执行文件只保留python2.exe。<br>这样，我们得到了三个命令，你可以自由切换：</p>
+<ol>
+<li>python – 表示python3</li>
+<li>python3 – 表示python3</li>
+<li>python2 – 表示python2</li>
+</ol>
+<p>重启命令行，操作验证：<br><img src="/images/install_diff_python3_on_windows/09.png" alt="09"></p>
+<h3 id="不同版本的pip管理器的使用"><a href="#不同版本的pip管理器的使用" class="headerlink" title="不同版本的pip管理器的使用"></a>不同版本的pip管理器的使用</h3><p>正常来说，pip在笔者下载的这两个版本中都有默认支持了。<br>对于老版本的python2如果没有，可以简单的在搜索引擎上找到安装python2的pip的解决方法。</p>
+<p>由于之前我们修改了python.exe以支持想要的版本区分，不过也使得对应版本的pip.exe无法使用了。</p>
+<p>这里提供简单的操作方法：</p>
+<pre><code>C:\Users\imcat&gt;python2 -m pip --version
+pip 18.1 from C:\Python2.7\lib\site-packages\pip (python 2.7)
+
+C:\Users\imcat&gt;python3 -m pip --version
+pip 19.0.3 from C:\python3.7\lib\site-packages\pip (python 3.7)</code></pre><p>结果类似这样：<br><img src="/images/install_diff_python3_on_windows/10.png" alt="10"></p>
+<p>这样，你就可以使用pip安装你想要的库到指定版本路径中。</p>
+<h2 id="使用anaconda自带以的版本控制"><a href="#使用anaconda自带以的版本控制" class="headerlink" title="使用anaconda自带以的版本控制"></a>使用anaconda自带以的版本控制</h2><p>anaconda 是一个比较有意思的开源项目，它对于python的版本控制非常到位，并且内置了很多有用的功能。</p>
+<p>由于它的强大，省去了我们的配置时间，接下来简单看看如何使用 anaconda。</p>
+<h3 id="anaconda-的下载与安装"><a href="#anaconda-的下载与安装" class="headerlink" title="anaconda 的下载与安装"></a>anaconda 的下载与安装</h3><p>去<a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda 的官网</a>下载下来python3版本，其实我们只需要下载python3版本，也就是比较前卫的版本。<br>之所以这样，是因为conda管理器可以帮助我们自动下载python2的内容，而且也方便切换。</p>
+<p>下载安装步骤如图：</p>
+<p>step.1 找到官网下载地址并下载<br><img src="/images/install_diff_python3_on_windows/11.png" alt="11"></p>
+<p>step.2 双击安装<br><img src="/images/install_diff_python3_on_windows/12.png" alt="12"></p>
+<p>step.3 选择一个独立的路径<br><img src="/images/install_diff_python3_on_windows/13.png" alt="13"></p>
+<p>step.4 前面安装过默认的python，因为anaconda是独立的环境，所以去掉图示勾选<br><img src="/images/install_diff_python3_on_windows/14.png" alt="14"></p>
+<p>step.5安装过程有些枯燥，由于不是mini版本，需要一些时间，去喝点水吧<br><img src="/images/install_diff_python3_on_windows/15.png" alt="15"></p>
+<p>由于默认安装了一些应用，所以安装时间稍微长一些，当然你可以下载它的mini版本，这里不做赘述了。</p>
+<p>安装完成后，验证方法只需查看开始菜单中的anaconda即可，如图：<br><img src="/images/install_diff_python3_on_windows/16.png" alt="16"></p>
+<p>如果你喜欢gui，那就启动gui，笔者一般喜欢使用命令行，所以使用shell接口就足够了，本文也主要介绍shell接口的相关配置，也就是<code>anaconda prompt</code>。</p>
+<p>运行效果如图：<br><img src="/images/install_diff_python3_on_windows/17.png" alt="17"></p>
+<h3 id="conda-命令的简单使用"><a href="#conda-命令的简单使用" class="headerlink" title="conda 命令的简单使用"></a>conda 命令的简单使用</h3><p>anaconda 的管理器接口是 conda 应用，从名字看就很容易理解。<br>这里列出一些常用的 conda 管理器的常用命令，如果想要更详细的内容，可以自行搜索官网文档。</p>
+<p>以下命令都是在<code>anaconda</code>的shell中完成的，也就是<code>anaconda prompt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 帮助:</span></span><br><span class="line">conda -h</span><br><span class="line"><span class="comment"># 查看conda版本:</span></span><br><span class="line">conda -V</span><br><span class="line"><span class="comment"># 查看虚拟环境列表:</span></span><br><span class="line">conda env list 或 conda info -e 或 conda info --envs</span><br><span class="line"><span class="comment"># 创建python虚拟环境:</span></span><br><span class="line">conda create -n your_env_name python=X.X（2.7、3.6等)</span><br><span class="line">your_env_name &gt;&gt; 就是你的环境名字，识别号而已</span><br><span class="line">python=X.X &gt;&gt; 就是你要安装的虚拟环境使用的真实环境版本</span><br><span class="line"><span class="comment"># 向指定虚拟环境中安装额外的库:</span></span><br><span class="line">conda install -n your_env_name [package]</span><br><span class="line">其实在虚拟环境中，通过正常的安装流程也是一样可以办到的，当然需要你切到虚拟环境下。</span><br><span class="line"><span class="comment"># 开启虚拟环境:</span></span><br><span class="line">activate your_env_name</span><br><span class="line"><span class="comment"># 关闭虚拟环境:</span></span><br><span class="line">deactivate</span><br><span class="line"><span class="comment"># 删除虚拟环境:</span></span><br><span class="line">conda remove -n your_env_name(虚拟环境名称) --all</span><br><span class="line"><span class="comment"># 删除环境中的某个包:</span></span><br><span class="line">conda remove --name your_env_name package_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="简单操作与验证"><a href="#简单操作与验证" class="headerlink" title="简单操作与验证"></a>简单操作与验证</h3><p>安装python2</p>
+<pre><code>conda create -n python27 python=2.7</code></pre><p>查看安装好的虚拟环境</p>
+<pre><code>conda env list</code></pre><p>切换到指定的虚拟环境</p>
+<pre><code>activate python27</code></pre><p>验证版本</p>
+<pre><code>python --version</code></pre><p>安装卸载包</p>
+<pre><code>python -m pip install openpyxl
+python -m pip uninstall openpyxl</code></pre><p>退出环境</p>
+<pre><code>deactive</code></pre><p>简单、直接、粗暴，很符合有强迫症的人士。</p>
+<h2 id="两种方法的利与弊"><a href="#两种方法的利与弊" class="headerlink" title="两种方法的利与弊"></a>两种方法的利与弊</h2><p>其实就方法而言，并没有什么高低之分，只不过针对应用场景来说，有的方法稍微有点别手而已。</p>
+<p>比如，笔者在工作中就遇到的情况，这里简单描述下：<br>项目同时使用python2和python3的内容，因为一早就有的工具，需要你去继承使用；<br>当然有些同学会说，自己可以将python2的项目修改成python3兼容的，不过这需要花费很多成本，<br>一般在项目中，除非逼不得已，一般都不会这么做，而是一起使用python3和python2，这个时候，<br>貌似纯粹的虚拟环境就有点劣势，所以配置干净的系统环境，也就是使用第一种方法，就成了符合当前策略的主要方案。</p>
+<p>而一般一个项目的开发可能支持不同的python版本，设计之初，就可能考虑到不同版本的向后兼容性，<br>需要不停的切换版本验证，这种时候，虚拟环境的特长就显露出来了。</p>
+<p>当然，这也是笔者个人所思，百家想法，各有观点，这里就不过多的讨论了。</p>
+<p>好了，终于在windows上，不断的卸载和安装，完成了这篇文章。<br>^_^ 祝贺下(拍手)。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/08/12/Blog/python/python-operate-path-methods/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a type="button" class="btn btn-default disabled">Next<i class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-08-12 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/python/">python<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/install-python/">install_python<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#什么叫不同版本的python？"><span class="toc-article-text">什么叫不同版本的python？</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#在windows上安装不同版本python的方法"><span class="toc-article-text">在windows上安装不同版本python的方法</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#官网下载，安装自定义"><span class="toc-article-text">官网下载，安装自定义</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#下载python的不同版本"><span class="toc-article-text">下载python的不同版本</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#定制化自己的python版本环境并安装"><span class="toc-article-text">定制化自己的python版本环境并安装</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#为了使用命令行，修改以做兼容"><span class="toc-article-text">为了使用命令行，修改以做兼容</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#不同版本的pip管理器的使用"><span class="toc-article-text">不同版本的pip管理器的使用</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#使用anaconda自带以的版本控制"><span class="toc-article-text">使用anaconda自带以的版本控制</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#anaconda-的下载与安装"><span class="toc-article-text">anaconda 的下载与安装</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#conda-命令的简单使用"><span class="toc-article-text">conda 命令的简单使用</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#简单操作与验证"><span class="toc-article-text">简单操作与验证</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#两种方法的利与弊"><span class="toc-article-text">两种方法的利与弊</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

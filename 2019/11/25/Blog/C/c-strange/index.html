@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>C语言中的小事 | Rex&#39;s BLOG</title>
+  <meta name="author" content="Rex">
+  
+  <meta name="description" content="embedded linux os article">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="C语言中的小事"/>
+  <meta property="og:site_name" content="Rex&#39;s BLOG"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Rex&#39;s BLOG</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> C语言中的小事</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="说说C语言中的小事"><a href="#说说C语言中的小事" class="headerlink" title="说说C语言中的小事"></a>说说C语言中的小事</h1><p>本文记录C语言中了一些你比较疑惑，或者奇怪的问题。</p>
+<h2 id="printf-“-s-n”-会输出什么？"><a href="#printf-“-s-n”-会输出什么？" class="headerlink" title="printf(“%s\n”);会输出什么？"></a>printf(“%s\n”);会输出什么？</h2><p>这看起来很奇怪不是么？<br>依你来看这就是一个错误的语法呀？</p>
+<p>没错，但也错了，对于GCC编译器来说，这是一个warning。</p>
+<p>我们看个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> * test_str = <span class="string">"Hi Bro"</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, test_str);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">乱码或者其他不可读的内容</span><br><span class="line">Hi Bro</span><br><span class="line">Hi Bro</span><br></pre></td></tr></table></figure>
+<p>这个例子需要看printf的实现源码才能知道为什么会这样。</p>
+<p>TBD…</p>
+<h2 id="你考虑过C语言符号的可见性么？"><a href="#你考虑过C语言符号的可见性么？" class="headerlink" title="你考虑过C语言符号的可见性么？"></a>你考虑过C语言符号的可见性么？</h2><p>符号的可见性，比如这样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">students</span> = &#123;</span> &amp;students, &amp;students &#125;;</span><br></pre></td></tr></table></figure>
+<p>关于符号students，为什么可以还没有定义完成就可以被使用？</p>
+<p>其实这可以从编译原理的角度分析：<br>由于students是编译时确定的，不论他是global还是static，已经在image中分配了它的空间，那么它的地址也就确定了，所以我们看到&amp;students可以被使用。</p>
+<h2 id="关于结构体初始化和赋值的一些问题"><a href="#关于结构体初始化和赋值的一些问题" class="headerlink" title="关于结构体初始化和赋值的一些问题"></a>关于结构体初始化和赋值的一些问题</h2><p>初始化结构体操作，像这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">students</span> = &#123;</span></span><br><span class="line">    .next = &amp;students,</span><br><span class="line">    .prev = &amp;students,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这没有问题，但像下面这样就会出现问题：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">inner</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">outter</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">inner</span> <span class="title">i</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">outter</span> * <span class="title">out</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">outter</span>));</span></span><br><span class="line">    out.i = &#123;<span class="number">100</span>&#125;;<span class="comment">// 错误的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根本原因有两个：</p>
+<ol>
+<li>一个是，结构体只能在初始化的时候赋值，并且不能是malloc分配方式，只能是编译时分配</li>
+<li>另一个是，编译时确定的结构体内存，除了在初始化的时候可以像students那样使用，在之后的赋值动作都不可以这样，只能按照成员变量挨个赋值。</li>
+</ol>
+<p>正确做法是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">outter</span> * <span class="title">out</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">outter</span>));</span></span><br><span class="line">    out.i.id = <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="你使用过-include-“xxx-c”这样的宏么？"><a href="#你使用过-include-“xxx-c”这样的宏么？" class="headerlink" title="你使用过#include “xxx.c”这样的宏么？"></a>你使用过#include “xxx.c”这样的宏么？</h2><p>有时候在编译C语言的时候，你会遇到重复定义的问题，但我想说的并不是普通的重复定义问题。</p>
+<p>我们知道.h和.c只不过是用来给编译器区分的文件类型，本质上都是源文件，只不过人为的把它分成：头文件和源文件</p>
+<p>也就是说我们可以这样使用include</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"demo.c"</span> <span class="comment">// 就像包含.h文件一样。</span></span></span><br></pre></td></tr></table></figure>
+<p>而如果碰到使用这个技巧的源文件的时候，你有故作聪明的在编译的时候加了源文件 demo.o (demo.c),<br>这个时候就会重复定义。</p>
+<p>那么总结的就是，如果看到有.c文件，但是在编译的时候没有在编译源文件列表中添加，那么肯定是使用了本文说的这个技术。</p>
+<h2 id="看C源代码的时候，你有这样的思维定式么？"><a href="#看C源代码的时候，你有这样的思维定式么？" class="headerlink" title="看C源代码的时候，你有这样的思维定式么？"></a>看C源代码的时候，你有这样的思维定式么？</h2><p>在C语言编程的时候，与大多数语言一样，你要在不断的层次转换中知道自己所处的位置，<br>不过我想说的是，很多同学当基础知识不够扎实的时候，就会不知道自己在哪里</p>
+<p>在C语言中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dev-&gt;mii.dev = dev-&gt;net</span><br></pre></td></tr></table></figure>
+<p>这样简单的一句话说明:<br>符号’-&gt;’表示前面的操作数是指针，并且他结构中有mii成员，而成员mii是是么，需要后面的符号’.’来说明，<br>原来它是一个结构体内嵌成员，它包含dev成员，不过dev是指针还是内嵌成员并不知道。<br>在左值中’-&gt;’符号有同样的解释，不过这里之所以可以这样赋值，就说明前面的’mii.dev’中的dev是个指针，<br>而且’dev-&gt;net’也是一个指针。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/11/25/Blog/C/c-if-else/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/08/12/Blog/python/python-operate-path-methods/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-11-25 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/C/">C<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/syntax/">syntax<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#说说C语言中的小事"><span class="toc-article-text">说说C语言中的小事</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#printf-“-s-n”-会输出什么？"><span class="toc-article-text">printf(“%s\n”);会输出什么？</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#你考虑过C语言符号的可见性么？"><span class="toc-article-text">你考虑过C语言符号的可见性么？</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#关于结构体初始化和赋值的一些问题"><span class="toc-article-text">关于结构体初始化和赋值的一些问题</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#你使用过-include-“xxx-c”这样的宏么？"><span class="toc-article-text">你使用过#include “xxx.c”这样的宏么？</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#看C源代码的时候，你有这样的思维定式么？"><span class="toc-article-text">看C源代码的时候，你有这样的思维定式么？</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Rex
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>
